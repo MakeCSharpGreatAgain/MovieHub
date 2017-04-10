@@ -1,0 +1,34 @@
+﻿body {
+}
+.navbar {
+  background: #e60000; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(left, #e60000 , #ffff4d); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(right, #e60000, #ffff4d); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(right, #e60000, #ffff4d); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to right, #e60000 , #ffff4d); /* Standard syntax */
+  font-size: 1.6em; 
+  border-bottom-color: white;
+  height: 61px;
+}
+.navbar-inverse .navbar-brand {
+  color: white;
+  font-size: 1.3em;
+  margin-bottom: 5px;
+  margin-top: 4px;
+
+}
+.navbar-inverse:hover .navbar-brand:hover {
+    color: black;
+    border-radius: 70%;
+    border-top: double white 5px;
+}
+.navbar-inverse .navbar-nav > li > a {
+    color: white;
+    margin-bottom: 5px;
+    margin-top: 4px;
+}
+.navbar-inverse:hover .navbar-nav > li > a:hover {
+    color: black;
+    border-radius: 70%;
+    border-bottom: double white 5px;
+}
