@@ -21,13 +21,13 @@ namespace MovieHub.Models
 
         public string Rated { get; set; }
 
-        public DateTime? Released { get; set; }
+        public DateTime Released { get; set; }
 
         public string Runtime { get; set; }
 
         public virtual ICollection<Genre> Genres { get; set; }
 
-        public int? DirectorId { get; set; }
+        public int DirectorId { get; set; }
 
         public virtual Director Director { get; set; }
 
@@ -45,7 +45,7 @@ namespace MovieHub.Models
 
         public long imdbVotes { get; set; }
 
-        public int? ProductionId { get; set; }
+        public int ProductionId { get; set; }
 
         public virtual Production Production { get; set; }
     }

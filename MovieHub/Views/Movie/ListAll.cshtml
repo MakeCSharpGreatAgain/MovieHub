@@ -1,0 +1,18 @@
+﻿@model List<MovieHub.Models.Movie>
+
+@{
+    ViewBag.Title = "ListAll";
+}
+
+<h2>ListAll</h2>
+
+<div class="container">
+    <div class="row">
+        @foreach (var movie in Model)
+        {
+            <div class="col-sm-6">
+               @movie.Title
+            </div>
+        }
+    </div>
+</div>
