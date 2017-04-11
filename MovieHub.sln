@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieHub", "MovieHub\MovieH
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieHub.Data", "MovieHub.Data\MovieHub.Data.csproj", "{081CE93F-6949-48FA-B3BA-07DA801C53F0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieHub.Models", "MovieHub.Models\MovieHub.Models.csproj", "{0BB38E74-EE40-4F32-9A6A-D20130BC3240}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{081CE93F-6949-48FA-B3BA-07DA801C53F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{081CE93F-6949-48FA-B3BA-07DA801C53F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{081CE93F-6949-48FA-B3BA-07DA801C53F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BB38E74-EE40-4F32-9A6A-D20130BC3240}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BB38E74-EE40-4F32-9A6A-D20130BC3240}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BB38E74-EE40-4F32-9A6A-D20130BC3240}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BB38E74-EE40-4F32-9A6A-D20130BC3240}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

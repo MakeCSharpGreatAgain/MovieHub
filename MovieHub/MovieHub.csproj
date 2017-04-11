@@ -179,16 +179,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Data\MovieContext.cs" />
-    <Compile Include="Models\ViewModels\AccountViewModels.cs" />
-    <Compile Include="Models\Actor.cs" />
-    <Compile Include="Models\ApplicationUser.cs" />
-    <Compile Include="Models\Director.cs" />
-    <Compile Include="Models\Genre.cs" />
-    <Compile Include="Models\ViewModels\ManageViewModels.cs" />
-    <Compile Include="Models\Movie.cs" />
-    <Compile Include="Models\MovieDto.cs" />
-    <Compile Include="Models\Production.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -262,6 +254,10 @@
     <ProjectReference Include="..\MovieHub.Data\MovieHub.Data.csproj">
       <Project>{081ce93f-6949-48fa-b3ba-07da801c53f0}</Project>
       <Name>MovieHub.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MovieHub.Models\MovieHub.Models.csproj">
+      <Project>{0bb38e74-ee40-4f32-9a6a-d20130bc3240}</Project>
+      <Name>MovieHub.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

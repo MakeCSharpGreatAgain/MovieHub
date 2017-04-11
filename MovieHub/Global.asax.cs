@@ -23,7 +23,7 @@ namespace MovieHub
 
             AutoMapperConfiguration.Configure();
 
-            var context = new MovieContext();
+            var context = new MovieDbContext();
             context.Database.Initialize(true);
 
         }

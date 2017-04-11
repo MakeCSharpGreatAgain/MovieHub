@@ -1,8 +1,7 @@
 ﻿using System.Data.Entity;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
+using System.IO;
 using Microsoft.AspNet.Identity.EntityFramework;
+using MovieHub.Models;
 
 namespace MovieHub.Data
 {
@@ -14,6 +13,8 @@ namespace MovieHub.Data
         public MovieDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+            Database.SetInitializer<MovieDbContext>(new SeedInitializer());
+
         }
 
 
@@ -21,5 +22,41 @@ namespace MovieHub.Data
         {
             return new MovieDbContext();
         }
+        public virtual DbSet<Movie> Movies { get; set; }
+
+
+        public void Seed(MovieDbContext context)
+        {
+            ImportMovies(context);
+
+        }
+
+        private void ImportMovies(MovieDbContext context)
+        {
+            //TODO : Replace that path depending on where movies.json is on your PC
+            string filePath = @"D:\Github\MovieHub\MovieHub\import\movies.json";
+            string moviesJson = File.ReadAllText(filePath);
+
+
+            Movie movie = new Movie()
+            {
+                Title = "A movie title"
+            };
+
+
+            context.Movies.Add(movie);
+            context.SaveChanges();
+
+        }
     }
+
+    public class SeedInitializer : DropCreateDatabaseAlways<MovieDbContext>
+    {
+        protected override void Seed(MovieDbContext context)
+        {
+            context.Seed(context);
+            base.Seed(context);
+        }
+    }
+
 }

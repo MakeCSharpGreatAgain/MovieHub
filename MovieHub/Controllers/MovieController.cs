@@ -19,7 +19,7 @@ namespace MovieHub.Controllers
         //GET: Movie/ListAll
         public ActionResult ListAll()
         {
-            using (var db = new MovieContext())
+            using (var db = new MovieDbContext())
             {
                 var movies = db.Movies.ToList().OrderByDescending(m=>m.imdbRating).ToList();
                   
