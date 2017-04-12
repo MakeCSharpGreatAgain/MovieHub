@@ -17,9 +17,19 @@ namespace MovieHub.Configurations
             Mapper.Initialize(action =>
             {
                 action.CreateMap<Movie, MovieDto>();
+
                 action.CreateMap<RegisterViewModel, ApplicationUser>()
-                .ForMember<string>(dest => dest.UserName, cfg => cfg.MapFrom(src => src.Username))
+                .ForMember(dest => dest.UserName, cfg => cfg.MapFrom(src => src.Username))
                 .ForMember(dest => dest.ProfilePicture, cfg => cfg.MapFrom(src => ConvertToByteArray(src.ProfilePicture)));
+
+                action.CreateMap<string, Actor>()
+                .ForMember<string>(dest => dest.Name, mo => mo.MapFrom(src => src));
+
+                action.CreateMap<string, Genre>()
+                .ForMember<string>(dest => dest.Name, mo => mo.MapFrom(src => src));
+
+                action.CreateMap<string, Director>()
+               .ForMember<string>(dest => dest.Name, mo => mo.MapFrom(src => src));
             });
         }
 

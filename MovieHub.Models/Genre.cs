@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace MovieHub.Models
 {
@@ -13,6 +14,7 @@ namespace MovieHub.Models
 
         public int Id { get; set; }
 
+        [JsonProperty(PropertyName = "Genre")]
         public string Name { get; set; }
 
         public virtual ICollection<Movie> Movies

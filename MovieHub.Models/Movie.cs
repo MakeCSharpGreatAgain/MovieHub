@@ -37,7 +37,7 @@ namespace MovieHub.Models
 
         public string Awards { get; set; } // Simple string E.g. Nominated for 2 Oscars. Another 50 wins & 96 nominations.
 
-        // public string Poster { get; set; } // This will be a link. Still no idea how to implement this!?
+        public string PosterUrl { get; set; } // This will be a link. Still no idea how to implement this!?
 
         public float imdbRating { get; set; }
 

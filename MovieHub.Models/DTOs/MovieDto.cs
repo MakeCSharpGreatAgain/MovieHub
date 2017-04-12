@@ -26,7 +26,7 @@
 
         public string Awards { get; set; }
 
-        // public string Poster { get; set; } // This will be a link. Still no idea how to implement this!?
+        public string Poster { get; set; } // This will be a link. Still no idea how to implement this!?
 
         public float imdbRating { get; set; }
 
