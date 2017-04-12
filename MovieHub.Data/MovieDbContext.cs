@@ -142,6 +142,7 @@ namespace MovieHub.Data
             context.SaveChanges();
         }
 
+        //TODO: Seed database with movies
         private void ImportMovies(MovieDbContext context)
         {
             //TODO : Replace that path depending on where movies.json is on your PC
