@@ -11,7 +11,7 @@ namespace MovieHub.Data
     public class MovieDbContext : IdentityDbContext<ApplicationUser>
     {
         public MovieDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("MovieHubContext", throwIfV1Schema: false)
         {
             Database.SetInitializer<MovieDbContext>(new SeedInitializer());
         }

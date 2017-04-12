@@ -1,11 +1,14 @@
-﻿namespace MovieHub.Data
+﻿namespace MovieHub.Models
 {
+    using Enums;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.Security.Claims;
     using System.Threading.Tasks;
+    using System.Web;
 
     public class ApplicationUser : IdentityUser
     {
@@ -13,7 +16,12 @@
 
         public string LastName { get; set; }
 
+        [Column(TypeName = "date")]
         public DateTime Birthdate { get; set; }
+
+        public GenderType Gender { get; set; }
+
+        public byte[] ProfilePicture { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

@@ -632,7 +632,7 @@ intellisense.annotate(_object, {
     ///   <param name="progressCallbacks" type="Function">A function, or array of functions, called when the Deferred notifies progress.</param>
     ///   <returns type="Promise" />
     /// </signature>
-  },
+  }
 });
 
 return _object;
@@ -2635,7 +2635,7 @@ intellisense.annotate(jQuery.fn, {
     ///   <param name="function(index)" type="Function">A callback function which generates a structure to wrap around the content of the matched elements. Receives the index position of the element in the set as an argument. Within the function, this refers to the current element in the set.</param>
     ///   <returns type="jQuery" />
     /// </signature>
-  },
+  }
 });
 
 intellisense.annotate(window, {
