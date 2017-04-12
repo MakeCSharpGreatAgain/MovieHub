@@ -32,7 +32,7 @@ namespace MovieHub.Data
         private void ImportMovies(MovieDbContext context)
         {
             //TODO : Replace that path depending on where movies.json is on your PC
-            string filePath = @"D:\Github\MovieHub\MovieHub\import\movies.json";
+            string filePath = @"E:\Softuni\Entity Framework\Teamwork\MovieHub\MovieHub\import\movies.json";
             string moviesJson = File.ReadAllText(filePath);
 
 
