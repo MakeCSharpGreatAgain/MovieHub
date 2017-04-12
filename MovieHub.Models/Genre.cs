@@ -4,15 +4,27 @@ namespace MovieHub.Models
 {
     public class Genre
     {
+        private ICollection<Movie> movies;
+
         public Genre()
         {
-            this.Movies = new HashSet<Movie>();
+            this.movies = new HashSet<Movie>();
         }
 
         public int Id { get; set; }
 
         public string Name { get; set; }
 
-        public virtual ICollection<Movie> Movies { get; set; }
+        public virtual ICollection<Movie> Movies
+        {
+            get
+            {
+                return movies;
+            }
+            set
+            {
+                movies = value;
+            }
+        }
     }
 }

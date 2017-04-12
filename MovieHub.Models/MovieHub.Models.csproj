@@ -62,7 +62,7 @@
     <Compile Include="Director.cs" />
     <Compile Include="Genre.cs" />
     <Compile Include="Movie.cs" />
-    <Compile Include="MovieDto.cs" />
+    <Compile Include="DTOs\MovieDto.cs" />
     <Compile Include="Production.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

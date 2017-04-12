@@ -6,7 +6,7 @@ using MovieHub.Models;
 namespace MovieHub.Data
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
-    
+
 
     public class MovieDbContext : IdentityDbContext<ApplicationUser>
     {
@@ -14,21 +14,19 @@ namespace MovieHub.Data
             : base("DefaultConnection", throwIfV1Schema: false)
         {
             Database.SetInitializer<MovieDbContext>(new SeedInitializer());
-
         }
 
+        public virtual DbSet<Movie> Movies { get; set; }
 
         public static MovieDbContext Create()
         {
             return new MovieDbContext();
         }
-        public virtual DbSet<Movie> Movies { get; set; }
 
 
         public void Seed(MovieDbContext context)
         {
             ImportMovies(context);
-
         }
 
         private void ImportMovies(MovieDbContext context)

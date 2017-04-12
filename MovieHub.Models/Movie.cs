@@ -7,10 +7,13 @@ namespace MovieHub.Models
 {
     public class Movie
     {
+        private ICollection<Genre> genres;
+        private ICollection<Actor> actors;
+
         public Movie()
         {
-            this.Genres = new HashSet<Genre>();
-            this.Actors = new HashSet<Actor>();
+            this.genres = new HashSet<Genre>();
+            this.actors = new HashSet<Actor>();
         }
 
         public int Id { get; set; }
@@ -24,15 +27,11 @@ namespace MovieHub.Models
         public DateTime? Released { get; set; }
 
         public string Runtime { get; set; }
-
-        public virtual ICollection<Genre> Genres { get; set; }
+        
 
         public int? DirectorId { get; set; }
-
         public virtual Director Director { get; set; }
-
-        public virtual ICollection<Actor> Actors { get; set; }
-
+        
         public string Plot { get; set; }
 
         public string[] Language { get; set; } // There could be more than 1.
@@ -46,7 +45,32 @@ namespace MovieHub.Models
         public long imdbVotes { get; set; }
 
         public int? ProductionId { get; set; }
-
         public virtual Production Production { get; set; }
+
+        public virtual ICollection<Genre> Genres
+        {
+            get
+            {
+                return genres;
+            }
+
+            set
+            {
+                genres = value;
+            }
+        }
+
+        public virtual ICollection<Actor> Actors
+        {
+            get
+            {
+                return actors;
+            }
+
+            set
+            {
+                actors = value;
+            }
+        }
     }
 }

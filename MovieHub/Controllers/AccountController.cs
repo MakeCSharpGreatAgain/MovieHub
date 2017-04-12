@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using MovieHub.Models;
 using MovieHub.Data;
+using MovieHub.ViewModels.Account;
 
 namespace MovieHub.Controllers
 {

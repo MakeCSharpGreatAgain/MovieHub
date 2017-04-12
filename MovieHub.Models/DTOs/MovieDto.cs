@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace MovieHub.Models
+﻿namespace MovieHub.Models.DTOs
 {
+    using System;
+
     public class MovieDto
     {
         public string Title { get; set; }

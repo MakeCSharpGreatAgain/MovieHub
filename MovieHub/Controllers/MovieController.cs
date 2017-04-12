@@ -21,8 +21,10 @@ namespace MovieHub.Controllers
         {
             using (var db = new MovieDbContext())
             {
-                var movies = db.Movies.ToList().OrderByDescending(m=>m.imdbRating).ToList();
-                  
+                var movies = db.Movies
+                    .ToList()
+                    .OrderByDescending(m=>m.imdbRating)
+                    .ToList();
                  
                 return View(movies);
             }

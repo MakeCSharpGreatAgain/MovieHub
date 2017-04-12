@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using AutoMapper;
 using MovieHub.Models;
+using MovieHub.Models.DTOs;
 
 namespace MovieHub.Configurations
 {
@@ -11,7 +12,10 @@ namespace MovieHub.Configurations
     {
         public static void Configure()
         {
-           Mapper.Initialize(action=>action.CreateMap<Movie,MovieDto>());
+            Mapper.Initialize(action =>
+            {
+                action.CreateMap<Movie, MovieDto>();
+            });
         }
 
     }

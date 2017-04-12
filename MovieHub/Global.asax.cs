@@ -25,7 +25,6 @@ namespace MovieHub
 
             var context = new MovieDbContext();
             context.Database.Initialize(true);
-
         }
     }
 }
