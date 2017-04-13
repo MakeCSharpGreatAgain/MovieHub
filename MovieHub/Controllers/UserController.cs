@@ -19,7 +19,6 @@ namespace MovieHub.Controllers
             return View();
         }
 
-
         //GET : User/Profile
         public ActionResult ProfilePage()
         {
@@ -46,9 +45,7 @@ namespace MovieHub.Controllers
                 var store = new UserStore<ApplicationUser>(new MovieDbContext());
                 var userManager = new UserManager<ApplicationUser>(store);
                 ApplicationUser user = userManager.FindByNameAsync(User.Identity.Name).Result;
-
                 
-
                 using (var db = new MovieDbContext())
                 {
                     var u = db.Users.Find(user.Id);
@@ -59,13 +56,9 @@ namespace MovieHub.Controllers
                         db.SaveChanges();
                     }
                 }
-
             }
 
-            return RedirectToAction("ProfilePage","User");
+            return RedirectToAction("ProfilePage", "User");
         }
-
-
-       
     }
 }

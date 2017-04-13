@@ -42,7 +42,7 @@ namespace MovieHub.Data
         }
 
         //TODO : Replace that path depending on where movies.json is on your PC
-        private const string filePath = "..//..//..//MovieHub//import//movies.json";
+        private const string filePath = "../../../MovieHub/import/movies.json";
 
         private void ImportActors(MovieDbContext context)
         {
