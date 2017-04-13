@@ -17,10 +17,11 @@
         public string LastName { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime Birthdate { get; set; }
+        public DateTime? Birthdate { get; set; }
 
         public GenderType Gender { get; set; }
 
+        
         public byte[] ProfilePicture { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)

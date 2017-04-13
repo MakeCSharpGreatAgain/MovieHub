@@ -13,7 +13,6 @@ namespace MovieHub.Data
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
 
-
     public class MovieDbContext : IdentityDbContext<ApplicationUser>
     {
         public MovieDbContext()
@@ -42,9 +41,11 @@ namespace MovieHub.Data
             ImportMovies(context);
         }
 
+        //TODO : Replace that path depending on where movies.json is on your PC
+        private const string filePath = "D:\\Github\\MovieHub\\MovieHub\\import\\movies.json";
+
         private void ImportActors(MovieDbContext context)
         {
-            string filePath = @"E:\Softuni\Entity Framework\Teamwork\MovieHub\MovieHub\import\movies.json";
             string json = File.ReadAllText(filePath);
 
             List<string> actorNames = GetDistinctActorNames(json);
@@ -70,7 +71,6 @@ namespace MovieHub.Data
 
         private void ImportProductions(MovieDbContext context)
         {
-            string filePath = @"E:\Softuni\Entity Framework\Teamwork\MovieHub\MovieHub\import\movies.json";
             string json = File.ReadAllText(filePath);
 
             List<Production> productions = JsonConvert.DeserializeObject<List<Production>>(json);
@@ -87,7 +87,6 @@ namespace MovieHub.Data
 
         private void ImportGenres(MovieDbContext context)
         {
-            string filePath = @"E:\Softuni\Entity Framework\Teamwork\MovieHub\MovieHub\import\movies.json";
             string json = File.ReadAllText(filePath);
 
             List<string> genreNames = GetDistinctGenreNames(json);
@@ -132,7 +131,6 @@ namespace MovieHub.Data
 
         private void ImportDirectors(MovieDbContext context)
         {
-            string filePath = @"E:\Softuni\Entity Framework\Teamwork\MovieHub\MovieHub\import\movies.json";
             string json = File.ReadAllText(filePath);
 
             List<string> directorNames = GEtDistinctDirectorNames(json);
@@ -145,8 +143,6 @@ namespace MovieHub.Data
         //TODO: Seed database with movies
         private void ImportMovies(MovieDbContext context)
         {
-            //TODO : Replace that path depending on where movies.json is on your PC
-            string filePath = @"E:\Softuni\Entity Framework\Teamwork\MovieHub\MovieHub\import\movies.json";
             string moviesJson = File.ReadAllText(filePath);
 
             //List<Movie> movies = JsonConvert.DeserializeObject<List<Movie>>(moviesJson);
@@ -157,7 +153,7 @@ namespace MovieHub.Data
         }
     }
 
-    public class SeedInitializer : DropCreateDatabaseAlways<MovieDbContext>
+    public class SeedInitializer : DropCreateDatabaseIfModelChanges<MovieDbContext>
     {
         protected override void Seed(MovieDbContext context)
         {

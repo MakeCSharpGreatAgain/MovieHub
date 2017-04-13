@@ -38,16 +38,16 @@
         [Display(Name = "Last Name:")]
         public string LastName { get; set; }
 
-        [Required(ErrorMessage = "Birthdate is required.")]
-        [Display(Name = "Date of Birth:")]
-        [DataType(DataType.Date)]
-        public DateTime Birthdate { get; set; }
+        //[Required(ErrorMessage = "Birthdate is required.")]
+        //[Display(Name = "Date of Birth:")]
+        //[DataType(DataType.Date)]
+        //public DateTime? Birthdate { get; set; }
 
         [Required(ErrorMessage = "Gender is required.")]
         [Display(Name = "Gender:")]
         public GenderType Gender { get; set; }
 
-        public HttpPostedFileBase ProfilePicture { get; set; }
+       // public HttpPostedFileBase ProfilePicture { get; set; }
 
     }
 }
