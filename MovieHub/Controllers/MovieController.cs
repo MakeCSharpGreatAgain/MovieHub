@@ -30,5 +30,11 @@ namespace MovieHub.Controllers
             }
             
         }
+
+        // Get: Movie/Details
+        public ActionResult Details()
+        {
+            return View();
+        }
     }
 }

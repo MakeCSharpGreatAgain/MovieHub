@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "Details";
+}
+
+@Styles.Render("~/Content/movieDetails.css")
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1>Movie Title here <span class="year">(Year here)</span></h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 text-center text-capitalize">
+            <span class="details">Rated: R | Runtime | Genres | Realed Here</span>
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="poster">
+                <img src="~/Images/posterProba.jpg" alt="Poster" width="300">
+            </div>
+        </div>
+
+        <div class="col-md-8 verticalAlign">
+            <div class="col-md-12 vcenter">
+                <span class="bold">Director: </span>Here
+            </div>
+            <div class="col-md-12 vcenter">
+                <span class="bold">Stars: </span>Actors here, Actors here, Actors here, Actors here, Actors here
+            </div>
+            <div class="col-md-12 vcenter">
+                <span class="bold">Language: </span>Language Here
+            </div>
+            <div class="col-md-12 vcenter">
+                <span class="bold">Production: </span>Production Here
+            </div>
+            <div class="col-md-12 vcenter">
+                <span class="bold">Awards: </span>130 Oscars And 20 other nominations.
+            </div>
+            <div class="col-md-12 vcenter">
+                <span class="bold">Plot: </span>Eight years after the Joker's reign of anarchy, the Dark Knight, with the help of the enigmatic Selina, is forced from his imposed exile to save Gotham City, now on the edge of total annihilation, from the brutal guerrilla terrorist Bane.
+            </div>
+            <div class="col-md-12 vcenter">
+                <span class="bold">Our partner IMDb rating:</span>
+                <div class="col-md-12"><span class="rating">8.5</span> | 123,333 votes</div>
+            </div>
+
+            <button type="button" class="btn btn-primary">Add to favourite</button>
+            <input type="button" class="btn btn-info" value="Back" onclick="location.href = '/Movie/ListAll';">
+
+        </div>
+    </div>
+
+</div>
+

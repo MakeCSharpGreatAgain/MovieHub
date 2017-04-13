@@ -1,6 +1,6 @@
 ﻿body {
 }
-.navbar {
+#navbarMain {
   background: #e60000; /* For browsers that do not support gradients */
   background: -webkit-linear-gradient(left, #e60000 , #ffff4d); /* For Safari 5.1 to 6.0 */
   background: -o-linear-gradient(right, #e60000, #ffff4d); /* For Opera 11.1 to 12.0 */

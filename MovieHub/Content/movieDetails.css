@@ -1,0 +1,43 @@
+﻿body {
+}
+.year {
+    font-size:0.8em;
+    color: grey;
+}
+
+.poster {
+    width: 300px;
+}
+
+img {
+    border-radius: 5%;
+}
+
+.vcenter {
+    font-size: 1.2em;
+    margin: 5px;
+}
+
+hr {
+    width: 50%;
+    color: grey;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.details {
+    font-size: 1.1em;
+}
+
+.rating {
+    padding: 5px;
+    font-size: 1.1em;
+    border: 1px solid red;
+    border-radius: 50%;
+}
+
+button {
+    margin-left: 10%
+}
