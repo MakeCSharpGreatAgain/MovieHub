@@ -7,6 +7,7 @@ using MovieHub.Models;
 using MovieHub.Models.DTOs;
 using MovieHub.ViewModels.Account;
 using System.IO;
+using MovieHub.Data;
 
 namespace MovieHub.Configurations
 {
@@ -16,7 +17,7 @@ namespace MovieHub.Configurations
         {
             Mapper.Initialize(action =>
             {
-                action.CreateMap<Movie, MovieDto>();
+                action.CreateMap<Movie, MovieDTO>();
 
                 action.CreateMap<RegisterViewModel, ApplicationUser>()
                     .ForMember(dest => dest.UserName, cfg => cfg.MapFrom(src => src.Username));
@@ -30,6 +31,9 @@ namespace MovieHub.Configurations
 
                 action.CreateMap<string, Director>()
                .ForMember<string>(dest => dest.Name, mo => mo.MapFrom(src => src));
+
+                //action.CreateMap<MovieDTO, Movie>()
+                //.ForMember(dest => dest.Genres, cfg => cfg.MapFrom(src => MovieDbContext.GetGenresByName(context, src.Genres)));
             });
         }
 

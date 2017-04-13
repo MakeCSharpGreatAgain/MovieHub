@@ -75,7 +75,7 @@
     <Compile Include="Enums\GenderType.cs" />
     <Compile Include="Genre.cs" />
     <Compile Include="Movie.cs" />
-    <Compile Include="DTOs\MovieDto.cs" />
+    <Compile Include="DTOs\MovieDTO.cs" />
     <Compile Include="Production.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

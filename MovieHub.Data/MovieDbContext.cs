@@ -42,7 +42,8 @@ namespace MovieHub.Data
         }
 
         //TODO : Replace that path depending on where movies.json is on your PC
-        private const string filePath = "../../../MovieHub/import/movies.json";
+        //private const string filePath = "../../../MovieHub/import/movies.json";
+        private const string filePath = @"E:\Softuni\Entity Framework\Teamwork\MovieHub\MovieHub\Import\movies.json";
 
         private void ImportActors(MovieDbContext context)
         {
@@ -112,7 +113,7 @@ namespace MovieHub.Data
             return genresList;
         }
 
-        private static List<string> GEtDistinctDirectorNames(string json)
+        private static List<string> GetDistinctDirectorNames(string json)
         {
             List<CsvDirectorsDTO> directorNamesCSV = JsonConvert.DeserializeObject<List<CsvDirectorsDTO>>(json);
 
@@ -133,7 +134,7 @@ namespace MovieHub.Data
         {
             string json = File.ReadAllText(filePath);
 
-            List<string> directorNames = GEtDistinctDirectorNames(json);
+            List<string> directorNames = GetDistinctDirectorNames(json);
             List<Director> directors = Mapper.Map<List<string>, List<Director>>(directorNames);
 
             context.Directors.AddRange(directors);
@@ -145,15 +146,88 @@ namespace MovieHub.Data
         {
             string moviesJson = File.ReadAllText(filePath);
 
-            //List<Movie> movies = JsonConvert.DeserializeObject<List<Movie>>(moviesJson);
+            List<MovieDTO> movieDTOs = JsonConvert.DeserializeObject<List<MovieDTO>>(moviesJson,
+                new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            foreach (var movieDTO in movieDTOs)
+            {
+                List<Genre> genres = GetGenresByName(context, movieDTO.Genres);
+                Director director = GetDirectorByName(context, movieDTO.DirectorName);
+                List<Actor> actors = GetActorsByName(context, movieDTO.ActorNames);
+                string[] languages = movieDTO.Language.Split(new char[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                Production production = GetProductionByName(context, movieDTO.Production);
+
+                Movie movie = new Movie()
+                {
+                    Title = movieDTO.Title,
+                    Awards = movieDTO.Awards,
+                    Director = director,
+                    Genres = genres,
+                    Actors = actors,
+                    imdbRating = movieDTO.imdbRating,
+                    Language = languages,
+                    Plot = movieDTO.Plot,
+                    PosterUrl = movieDTO.Poster,
+                    Year = movieDTO.Year,
+                    Runtime = movieDTO.Runtime,
+                    Production = production,
+                    Released = movieDTO.Released,
+                    Rated = movieDTO.Rated
+                };
+
+                context.Movies.Add(movie);
+                context.SaveChanges();
+            }
 
             //context.Movies.AddRange(movies);
             //context.SaveChanges();
 
         }
+
+        private Production GetProductionByName(MovieDbContext context, string productionName)
+        {
+            return context.Productions.FirstOrDefault(p => p.Name == productionName);
+        }
+
+        public static List<Actor> GetActorsByName(MovieDbContext context, string actorsCSV)
+        {
+            string[] actorNames = actorsCSV
+                .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                .Select(a => a.Trim())
+                .ToArray();
+            List<Actor> actorsList = new List<Actor>();
+
+            foreach (var actorName in actorNames)
+            {
+                Actor actor = context.Actors.FirstOrDefault(a => a.Name == actorName);
+                actorsList.Add(actor);
+            }
+
+            return actorsList;
+        }
+
+        public static Director GetDirectorByName(MovieDbContext context, string directorName)
+        {
+            return context.Directors
+                .FirstOrDefault(d => d.Name == directorName);
+        }
+
+        public static List<Genre> GetGenresByName(MovieDbContext context, string genresCSV)
+        {
+            string[] genresNames = genresCSV.Split(new char[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+            List<Genre> genresList = new List<Genre>();
+
+            foreach (var genreName in genresNames)
+            {
+                Genre genre = context.Genres.FirstOrDefault(g => g.Name == genreName);
+                genresList.Add(genre);
+            }
+
+            return genresList;
+        }
     }
 
-    public class SeedInitializer : DropCreateDatabaseIfModelChanges<MovieDbContext>
+    public class SeedInitializer : DropCreateDatabaseAlways<MovieDbContext>
     {
         protected override void Seed(MovieDbContext context)
         {

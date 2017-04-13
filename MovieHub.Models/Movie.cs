@@ -39,9 +39,9 @@ namespace MovieHub.Models
 
         public string PosterUrl { get; set; } // This will be a link. Still no idea how to implement this!?
 
-        public float imdbRating { get; set; }
+        public double imdbRating { get; set; }
 
-        public long imdbVotes { get; set; }
+      //  public long imdbVotes { get; set; }
 
         public int? ProductionId { get; set; }
         public virtual Production Production { get; set; }
