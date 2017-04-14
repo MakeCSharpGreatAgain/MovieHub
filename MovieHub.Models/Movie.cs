@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -18,6 +19,7 @@ namespace MovieHub.Models
 
         public int Id { get; set; }
 
+        [MinLength(1, ErrorMessage = "{0} must be at least {1} symbols!")]
         public string Title { get; set; }
 
         public int Year { get; set; }
@@ -28,7 +30,7 @@ namespace MovieHub.Models
 
         public string Runtime { get; set; }
 
-        public int? DirectorId { get; set; }
+        public int DirectorId { get; set; }
         public virtual Director Director { get; set; }
 
         public string Plot { get; set; }
@@ -39,9 +41,7 @@ namespace MovieHub.Models
 
         public string PosterUrl { get; set; } // This will be a link. Still no idea how to implement this!?
 
-        public double imdbRating { get; set; }
-
-      //  public long imdbVotes { get; set; }
+        public double ImdbRating { get; set; }
 
         public int? ProductionId { get; set; }
         public virtual Production Production { get; set; }

@@ -20,7 +20,6 @@
         public DateTime? Birthdate { get; set; }
 
         public GenderType Gender { get; set; }
-
         
         public byte[] ProfilePicture { get; set; }
 

@@ -69,7 +69,9 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configurations\MovieConfiguration.cs" />
     <Compile Include="MovieDbContext.cs" />
+    <Compile Include="SeedInitializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -23,12 +23,12 @@ namespace MovieHub.Controllers
             {
                 var movies = db.Movies
                     .ToList()
-                    .OrderByDescending(m=>m.imdbRating)
+                    .OrderByDescending(m => m.ImdbRating)
                     .ToList();
-                 
+
                 return View(movies);
             }
-            
+
         }
 
         // Get: Movie/Details

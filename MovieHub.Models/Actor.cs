@@ -8,6 +8,7 @@ namespace MovieHub.Models
     public class Actor
     {
         private ICollection<Movie> movies;
+
         public Actor()
         {
             this.movies = new HashSet<Movie>();
