@@ -1,20 +1,16 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using MovieHub.Models;
-using MovieHub.Data;
-using MovieHub.ViewModels.Account;
-using AutoMapper;
-
-namespace MovieHub.Controllers
+﻿namespace MovieHub.Controllers
 {
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Web;
+    using System.Web.Mvc;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.Owin;
+    using Microsoft.Owin.Security;
+    using Models;
+    using ViewModels.Account;
+    using AutoMapper;
+
     [Authorize]
     public class AccountController : Controller
     {

@@ -8,6 +8,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using MovieHub.Data;
 using MovieHub.Models;
+using MovieHub.Services.Interfaces;
+using MovieHub.Services;
 
 namespace MovieHub.Controllers
 {
@@ -45,17 +47,19 @@ namespace MovieHub.Controllers
                 var store = new UserStore<ApplicationUser>(new MovieDbContext());
                 var userManager = new UserManager<ApplicationUser>(store);
                 ApplicationUser user = userManager.FindByNameAsync(User.Identity.Name).Result;
-                
-                using (var db = new MovieDbContext())
-                {
-                    var u = db.Users.Find(user.Id);
 
-                    if (u != null)
-                    {
-                        u.ProfilePicture = imageData;
-                        db.SaveChanges();
-                    }
-                }
+                IApplicationUserService userService = ServiceLocator.Instance.GetService<IApplicationUserService>();
+                userService.AddUserProfilePicture(user.Id, imageData);
+                //using (var db = new MovieDbContext())
+                //{
+                //    var u = db.Users.Find(user.Id);
+
+                //    if (u != null)
+                //    {
+                //        u.ProfilePicture = imageData;
+                //        db.SaveChanges();
+                //    }
+                //}
             }
 
             return RedirectToAction("ProfilePage", "User");

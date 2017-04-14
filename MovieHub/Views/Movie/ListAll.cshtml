@@ -1,4 +1,4 @@
-﻿@model List<MovieHub.Models.Movie>
+﻿@model ICollection<MovieHub.Models.Movie>
 
 @{
     ViewBag.Title = "ListAll";
@@ -11,8 +11,14 @@
         @foreach (var movie in Model)
         {
             <div class="col-sm-6">
-               @movie.Title
+                @*<img src="https://images-na.ssl-images-amazon.com/images/M/MV5BZTRmNjQ1ZDYtNDgzMy00OGE0LWE4N2YtNTkzNWQ5ZDhlNGJmL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@("@._V1_SX300.jpg")">*@
+                <img src="@movie.PosterUrl" />
+                @movie.Title
             </div>
+            <div class="col-sm-6">
+                Genre:@movie.Genres
+            </div>
+            <hr />
         }
     </div>
 </div>

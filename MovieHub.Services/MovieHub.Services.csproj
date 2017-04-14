@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{081CE93F-6949-48FA-B3BA-07DA801C53F0}</ProjectGuid>
+    <ProjectGuid>{9AC14604-89C1-4788-9C97-0A61B3F97BA5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MovieHub.Data</RootNamespace>
-    <AssemblyName>MovieHub.Data</AssemblyName>
+    <RootNamespace>MovieHub.Services</RootNamespace>
+    <AssemblyName>MovieHub.Services</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,10 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=6.0.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -50,14 +46,9 @@
       <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -66,24 +57,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Properties\" />
+    <Compile Include="Interfaces\IActorService.cs" />
+    <Compile Include="Interfaces\IApplicationUserService.cs" />
+    <Compile Include="Interfaces\IDirectorService.cs" />
+    <Compile Include="Interfaces\IGenreService.cs" />
+    <Compile Include="Interfaces\IMovieService.cs" />
+    <Compile Include="Interfaces\IProductionService.cs" />
+    <Compile Include="Interfaces\IServiceLocator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceLocator.cs" />
+    <Compile Include="Services\ActorService.cs" />
+    <Compile Include="Services\ApplicationUserService.cs" />
+    <Compile Include="Services\DirectorService.cs" />
+    <Compile Include="Services\GenreService.cs" />
+    <Compile Include="Services\MovieService.cs" />
+    <Compile Include="Services\ProductionService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configurations\MovieConfiguration.cs" />
-    <Compile Include="Import\JsonImport.cs" />
-    <Compile Include="MovieDbContext.cs" />
-    <Compile Include="SeedInitializer.cs" />
-    <Compile Include="Import\Utils\ImportHelper.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\MovieHub.Data\MovieHub.Data.csproj">
+      <Project>{081ce93f-6949-48fa-b3ba-07da801c53f0}</Project>
+      <Name>MovieHub.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MovieHub.Models\MovieHub.Models.csproj">
       <Project>{0bb38e74-ee40-4f32-9a6a-d20130bc3240}</Project>
       <Name>MovieHub.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

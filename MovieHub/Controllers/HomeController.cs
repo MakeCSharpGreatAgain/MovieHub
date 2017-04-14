@@ -25,14 +25,15 @@ namespace MovieHub.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 var store = new UserStore<ApplicationUser>(new MovieDbContext());
+
                 var userManager = new UserManager<ApplicationUser>(store);
                 ApplicationUser user = userManager.FindByNameAsync(User.Identity.Name).Result;
 
-                var db = new MovieDbContext();
-                var u = db.Users.Find(user.Id);
+                //var db = new MovieDbContext();
+                //var u = db.Users.Find(user.Id);
 
-                var userImage = u.ProfilePicture;
-
+                //var userImage = u.ProfilePicture;
+                var userImage = user.ProfilePicture;
 
                 if (userImage == null)
                 {
@@ -40,9 +41,7 @@ namespace MovieHub.Controllers
                 }
                 else
                 {
-
                     return new FileContentResult(userImage, "image/jpeg");
-
                 }
             }
 

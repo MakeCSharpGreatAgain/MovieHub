@@ -176,11 +176,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\IdentityConfig.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Configurations\App_Start\BundleConfig.cs" />
+    <Compile Include="Configurations\App_Start\FilterConfig.cs" />
+    <Compile Include="Configurations\App_Start\IdentityConfig.cs" />
+    <Compile Include="Configurations\App_Start\RouteConfig.cs" />
+    <Compile Include="Configurations\App_Start\Startup.Auth.cs" />
     <Compile Include="Configurations\AutoMapperConfiguration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -306,6 +306,10 @@
     <ProjectReference Include="..\MovieHub.Models\MovieHub.Models.csproj">
       <Project>{0bb38e74-ee40-4f32-9a6a-d20130bc3240}</Project>
       <Name>MovieHub.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MovieHub.Services\MovieHub.Services.csproj">
+      <Project>{9ac14604-89c1-4788-9c97-0a61b3f97ba5}</Project>
+      <Name>MovieHub.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

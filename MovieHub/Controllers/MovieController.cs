@@ -4,7 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MovieHub.Data;
-
+using MovieHub.Services.Interfaces;
+using MovieHub.Services;
 
 namespace MovieHub.Controllers
 {
@@ -19,16 +20,17 @@ namespace MovieHub.Controllers
         //GET: Movie/ListAll
         public ActionResult ListAll()
         {
-            using (var db = new MovieDbContext())
-            {
-                var movies = db.Movies
-                    .ToList()
-                    .OrderByDescending(m => m.ImdbRating)
-                    .ToList();
+            //using (var db = new MovieDbContext())
+            //{
+            //    var movies = db.Movies
+            //        .ToList()
+            //        .OrderByDescending(m => m.ImdbRating)
+            //        .ToList();
 
-                return View(movies);
-            }
+            //}
+            IMovieService movieService = ServiceLocator.Instance.GetService<IMovieService>();
 
+            return View(movieService.GetAllMovies());
         }
 
         // Get: Movie/Details
