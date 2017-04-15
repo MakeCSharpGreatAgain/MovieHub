@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewBag.Title = "Add";
+}
+
+@Styles.Render("~/Content/addMovie.css")
+
+<div class="well">
+    <h2 class="text-center">Add movie</h2>
+
+    <form class="form-horizontal">
+
+        <div class="form-group">
+            <label for="title" class="col-sm-2 control-label">Title</label>
+            <div class="col-md-10">
+                <input type="text" class="form-control input-lg" id="title" placeholder="Title">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="year" class="col-sm-2 control-label">Year</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="year" placeholder="Year">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="rated" class="col-sm-2 control-label">Rated</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="rated" placeholder="Rated">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="runtime" class="col-sm-2 control-label">Runtime</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="runtime" placeholder="Runtime">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="director" class="col-sm-2 control-label">Director</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="director" placeholder="Director">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="plot" class="col-sm-2 control-label">Plot</label>
+            <textarea class="col-sm-10 form-control" rows="4" id="plot" placeholder="Plot"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="language" class="col-sm-2 control-label">Language</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="language" placeholder="Language">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="poster" class="col-sm-2 control-label">Poster</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="poster" placeholder="URL of poster">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="imdb" class="col-sm-2 control-label">IMDb Rating</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="imdb" placeholder="IMDb score">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="production" class="col-sm-2 control-label">Production</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="production" placeholder="Production">
+            </div>
+        </div>
+
+        <div>Implement genres, actors </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">Add movie</button>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
