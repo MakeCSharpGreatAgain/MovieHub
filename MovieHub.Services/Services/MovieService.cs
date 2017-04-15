@@ -22,5 +22,18 @@
                     .ToList();
             }
         }
+
+        public Movie GetMovieById(int id)
+        {
+            using (MovieDbContext context = new MovieDbContext())
+            {
+                return context.Movies
+                    .Include(m => m.Genres)
+                    .Include(m => m.Director)
+                    .Include(m => m.Production)
+                    .Include(m => m.Actors)
+                    .FirstOrDefault(m => m.Id == id);
+            }
+        }
     }
 }

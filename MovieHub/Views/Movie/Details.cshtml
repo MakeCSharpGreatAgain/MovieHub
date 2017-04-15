@@ -10,7 +10,7 @@
 
     <div class="row">
         <div class="col-md-12 text-center">
-            <h1> @Model.Title <span class="year">@Model.Year</span></h1>
+            <h1> @Model.Title <span class="year">@Model.Released</span></h1>
         </div>
     </div>
 
@@ -42,7 +42,7 @@
 }
             </div>
             <div class="col-md-12 vcenter">
-                <span class="bold">Language: </span>Language
+                <span class="bold">Language(s): </span>@Model.Languages
             </div>
             <div class="col-md-12 vcenter">
                 <span class="bold">Production: </span>@Model.Production.Name

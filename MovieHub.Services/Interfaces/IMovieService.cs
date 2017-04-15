@@ -6,6 +6,7 @@
 
     public interface IMovieService
     {
-        ICollection<Movie> GetAllMovies(); 
+        ICollection<Movie> GetAllMovies();
+        Movie GetMovieById(int id); 
     }
 }

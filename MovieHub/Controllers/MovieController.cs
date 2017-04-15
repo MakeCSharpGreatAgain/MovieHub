@@ -8,6 +8,9 @@ using System.Web.Mvc;
 using MovieHub.Data;
 using MovieHub.Services.Interfaces;
 using MovieHub.Services;
+using MovieHub.Authorize;
+using MovieHub.Models;
+using MovieHub.Models.DTOs;
 
 namespace MovieHub.Controllers
 {
@@ -44,32 +47,42 @@ namespace MovieHub.Controllers
             }
 
 
-            using (var db = new MovieDbContext())
+            //using (var db = new MovieDbContext())
+            //{
+            //    //TODO : Include more things if needed 
+            //    var movie = db.Movies
+            //        .Where(m => m.Id == id)
+            //        .Include(m => m.Director)
+            //        .Include(m => m.Actors)
+            //        .Include(m => m.Production)
+            //        .Include(m => m.Genres)
+            //        .First();
+
+            //}
+            IMovieService movieService = ServiceLocator.Instance.GetService<IMovieService>();
+            Movie movie = movieService.GetMovieById((int)id);
+
+            if (movie == null)
             {
-                //TODO : Include more things if needed 
-                var movie = db.Movies
-                    .Where(m=>m.Id == id)
-                    .Include(m=>m.Director)
-                    .Include(m=>m.Actors)
-                    .Include(m=>m.Production)
-                    .Include(m=>m.Genres)
-                    .First();
-
-
-                if (movie == null)
-                {
-                    return HttpNotFound();
-                }
-
-                return View(movie);
+                return HttpNotFound();
             }
+
+            return View(movie);
 
         }
 
-        // GET: Movie/Add
-        public ActionResult Add()
+        // GET: Movie/Create
+        [CustomAuthorize(Roles = "Administrator")]
+        public ActionResult Create()
         {
             return View();
+        }
+
+        // POST: Movie/Create
+        [HttpPost]
+        public ActionResult Create(MovieDTO movie)
+        {
+            return RedirectToAction("Details", "Movie", new { @id = 1 });
         }
     }
 }

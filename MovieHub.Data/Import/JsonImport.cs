@@ -12,7 +12,7 @@
 
     public static class JsonImport
     {
-        private const string FilePath = @"D:\Github\MovieHub\MovieHub\Import\movies.json";
+        private const string FilePath = @"E:\Softuni\Entity Framework\Teamwork\MovieHub\MovieHub\Import\movies.json";
 
         public static ICollection<Movie> ImportMovies(MovieDbContext context)
         {
@@ -26,15 +26,15 @@
 
             foreach (var movieDTO in movieDTOs)
             {
-                ICollection<Genre> genres = 
+                ICollection<Genre> genres =
                     ImportHelper.GetGenresByName(context, movieDTO.Genres);
-                ICollection<Actor> actors = 
+                ICollection<Actor> actors =
                     ImportHelper.GetActorsByName(context, movieDTO.ActorNames);
-                Director director = 
+                Director director =
                     ImportHelper.GetDirectorByName(context, movieDTO.DirectorName);
-                Production production = 
+                Production production =
                     ImportHelper.GetProductionByName(context, movieDTO.Production);
-                string[] languages = movieDTO.Language.Split(new char[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                //string[] languages = movieDTO.Language.Split(new char[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
                 Movie movie = new Movie()
                 {
@@ -43,11 +43,11 @@
                     Director = director,
                     Genres = genres,
                     Actors = actors,
-                    ImdbRating = movieDTO.imdbRating,
-                    Language = languages,
+                    ImdbRating = movieDTO.ImdbRating,
+                    Languages = movieDTO.Languages,
                     Plot = movieDTO.Plot,
                     PosterUrl = movieDTO.Poster,
-                    Year = movieDTO.Year,
+                    //Year = movieDTO.Year,
                     Runtime = movieDTO.Runtime,
                     Production = production,
                     Released = movieDTO.Released,

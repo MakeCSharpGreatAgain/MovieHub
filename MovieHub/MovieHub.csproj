@@ -176,6 +176,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Authorize\CustomAuthorizeAttribute.cs" />
     <Compile Include="Configurations\App_Start\BundleConfig.cs" />
     <Compile Include="Configurations\App_Start\FilterConfig.cs" />
     <Compile Include="Configurations\App_Start\IdentityConfig.cs" />
@@ -292,7 +293,7 @@
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\User\ProfilePage.cshtml" />
     <Content Include="Views\Movie\Details.cshtml" />
-    <Content Include="Views\Movie\Add.cshtml" />
+    <Content Include="Views\Movie\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
