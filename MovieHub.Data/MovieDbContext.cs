@@ -20,6 +20,8 @@ namespace MovieHub.Data
         public virtual DbSet<Actor> Actors { get; set; }
         public virtual DbSet<Production> Productions { get; set; }
 
+        public virtual  DbSet<Review> Reviews { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new MovieConfiguration());

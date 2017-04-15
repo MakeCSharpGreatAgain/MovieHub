@@ -5,9 +5,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using MovieHub.Data;
+using MovieHub.Models;
 using MovieHub.Services.Interfaces;
 using MovieHub.Services;
+using MovieHub.ViewModels.Movie;
 
 namespace MovieHub.Controllers
 {
@@ -53,6 +56,7 @@ namespace MovieHub.Controllers
                     .Include(m=>m.Actors)
                     .Include(m=>m.Production)
                     .Include(m=>m.Genres)
+                    .Include(m=>m.Reviews.Select(r=>r.Author))
                     .First();
 
 
@@ -65,11 +69,38 @@ namespace MovieHub.Controllers
             }
 
         }
-
         // GET: Movie/Add
         public ActionResult Add()
         {
             return View();
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult SubmitReview(ReviewViewModel reviewModel)
+        {
+            if (ModelState.IsValid && reviewModel != null)
+            {
+                using (var db = new MovieDbContext())
+                {
+                    var userId = this.User.Identity.GetUserId();
+
+                    db.Reviews.Add(new Review()
+                    {
+                        AuthorId = userId,
+                        Content = reviewModel.Content,
+                        MovieId = reviewModel.MovieId
+
+                    });
+
+                    db.SaveChanges();
+                    return RedirectToAction("Details", new {id = reviewModel.MovieId});
+
+                }
+            }
+
+            return RedirectToAction("Details", new { id = reviewModel.MovieId });
+
         }
     }
 }
