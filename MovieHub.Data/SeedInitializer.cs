@@ -1,7 +1,10 @@
 ﻿namespace MovieHub.Data
 {
     using Import;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using Models;
+    using Models.Enums;
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
@@ -21,7 +24,69 @@
             ImportActors();
             ImportMovies();
 
+            AddRoles();
+            CreateAdminUser(context);
+
             base.Seed(context);
+        }
+
+        private void AddRoles()
+        {
+            using (MovieDbContext context = new MovieDbContext())
+            {
+                if (!context.Roles.Any())
+                {
+                    CreateRole(context, "Administrator");
+                    CreateRole(context, "User");
+                }
+            }
+        }
+
+        private void CreateAdminUser(MovieDbContext context)
+        {
+            ApplicationUser adminUser = new ApplicationUser()
+            {
+                UserName = "admin",
+                Email = "admin@admin.com",
+                FirstName = "System",
+                LastName = "Administrator",
+                Gender = GenderType.Male
+            };
+
+            UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            userManager.PasswordValidator = new PasswordValidator()
+            {
+                RequireDigit = false,
+                RequiredLength = 1,
+                RequireLowercase = false,
+                RequireNonLetterOrDigit = false,
+                RequireUppercase = false
+            };
+
+            var adminCreateResult = userManager.Create(adminUser, "admin");
+            if (!adminCreateResult.Succeeded)
+            {
+                throw new Exception(string.Join("; ", adminCreateResult.Errors));
+            }
+
+            var addAdminRoleResult = userManager.AddToRole(adminUser.Id, "Administrator");
+            if (!addAdminRoleResult.Succeeded)
+            {
+                throw new Exception(string.Join("; ", addAdminRoleResult.Errors));
+            }
+        }
+
+        private void CreateRole(MovieDbContext context, string roleName)
+        {
+            RoleManager<IdentityRole> roleManager = new RoleManager<IdentityRole>(
+                new RoleStore<IdentityRole>(context));
+
+            IdentityResult result = roleManager.Create(new IdentityRole(roleName));
+
+            if (!result.Succeeded)
+            {
+                throw new Exception(string.Join(", ", result.Errors));
+            }
         }
 
         private void ImportActors()

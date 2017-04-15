@@ -151,8 +151,10 @@
             if (ModelState.IsValid)
             {
                 var user = Mapper.Map<ApplicationUser>(model);
-
                 var result = await UserManager.CreateAsync(user, model.Password);
+
+                var addRoleResult = UserManager.AddToRole(user.Id, "User");
+
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
