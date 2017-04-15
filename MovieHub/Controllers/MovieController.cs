@@ -13,6 +13,8 @@ using MovieHub.Authorize;
 using MovieHub.Models;
 using MovieHub.Models.DTOs;
 using MovieHub.ViewModels.Movie;
+using MovieHub.Data.Import.Utils;
+using AutoMapper;
 
 namespace MovieHub.Controllers
 {
@@ -49,30 +51,30 @@ namespace MovieHub.Controllers
             }
 
 
-            using (var db = new MovieDbContext())
-            {
-                //TODO : Include more things if needed 
-                var movie = db.Movies
-                    .Where(m => m.Id == id)
-                    .Include(m => m.Director)
-                    .Include(m => m.Actors)
-                    .Include(m => m.Production)
-                    .Include(m => m.Genres)
-                    .Include(m=>m.Reviews.Select(r=>r.Author))
-                    .First();
-
-                return View(movie);
-
-            }
-           // IMovieService movieService = ServiceLocator.Instance.GetService<IMovieService>();
-          //  Movie movie = movieService.GetMovieById((int)id);
-
-            //if (movie == null)
+            //using (var db = new MovieDbContext())
             //{
-            //    return HttpNotFound();
-            //}
+            //    TODO: Include more things if needed
+            //    var movie = db.Movies
+            //        .Where(m => m.Id == id)
+            //        .Include(m => m.Director)
+            //        .Include(m => m.Actors)
+            //        .Include(m => m.Production)
+            //        .Include(m => m.Genres)
+            //        .Include(m => m.Reviews.Select(r => r.Author))
+            //        .First();
 
-            //return View(movie);
+            //    return View(movie);
+
+            //}
+            IMovieService movieService = ServiceLocator.Instance.GetService<IMovieService>();
+            Movie movie = movieService.GetMovieById((int)id);
+
+            if (movie == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(movie);
 
         }
 
@@ -85,9 +87,140 @@ namespace MovieHub.Controllers
 
         // POST: Movie/Create
         [HttpPost]
-        public ActionResult Create(MovieDTO movie)
+        public ActionResult Create(MovieViewModel movieViewModel)
         {
-            return RedirectToAction("Details", "Movie", new { @id = 1 });
+            //MovieDTO movieDTO = Mapper.Map<MovieViewModel, MovieDTO>(movieViewModel);
+
+            IMovieService movieService = ServiceLocator.Instance.GetService<IMovieService>();
+            //IActorService actorService = ServiceLocator.Instance.GetService<IActorService>();
+            //IGenreService genreService = ServiceLocator.Instance.GetService<IGenreService>();
+            //IDirectorService directorService = ServiceLocator.Instance.GetService<IDirectorService>();
+            //IProductionService productionService = ServiceLocator.Instance.GetService<IProductionService>();
+
+            Movie movie = new Movie()
+            {
+                Awards = movieViewModel.Awards,
+                Title = movieViewModel.Title,
+                PosterUrl = movieViewModel.Poster,
+                ImdbRating = movieViewModel.ImdbRating,
+                Rated = movieViewModel.Rated,
+                Languages = movieViewModel.Languages,
+                Released = movieViewModel.Released,
+                Plot = movieViewModel.Plot,
+                Runtime = movieViewModel.Runtime
+            };
+
+            if (!string.IsNullOrEmpty(movieViewModel.ActorNames))
+            {
+                ICollection<Actor> actors = GetActors(movieViewModel.ActorNames);
+                movie.Actors = actors;
+            }
+
+            if (!string.IsNullOrEmpty(movieViewModel.Genres))
+            {
+                ICollection<Genre> genres = GetGenres(movieViewModel.Genres);
+                movie.Genres = genres;
+            }
+
+            if (!string.IsNullOrEmpty(movieViewModel.DirectorName))
+            {
+                Director director = GetDirector(movieViewModel);
+
+                movie.Director = director;
+            }
+
+            if (!string.IsNullOrEmpty(movieViewModel.Production))
+            {
+                Production production = GetProduction(movieViewModel);
+
+                movie.Production = production;
+            }
+
+            int id = movieService.AddMovie(movie);
+
+            return RedirectToAction("Details", new { @id = id });
+        }
+
+        private static Production GetProduction(MovieViewModel movieViewModel)
+        {
+            IProductionService productionService = ServiceLocator.Instance.GetService<IProductionService>();
+
+            Production production = productionService.GetProductionByName(movieViewModel.Production);
+
+            if (production == null)
+            {
+                production = productionService.InsertProduction(movieViewModel.Production);
+            }
+
+            return production;
+        }
+
+        private static Director GetDirector(MovieViewModel movieViewModel)
+        {
+            IDirectorService directorService = ServiceLocator.Instance.GetService<IDirectorService>();
+
+            Director director = directorService.GetDirectorByName(movieViewModel.DirectorName);
+
+            if (director == null)
+            {
+                director = directorService.InsertDirector(movieViewModel.DirectorName);
+            }
+
+            return director;
+        }
+
+        private ICollection<Genre> GetGenres(string genreNames)
+        {
+            IGenreService genreService = ServiceLocator.Instance.GetService<IGenreService>();
+
+            ICollection<Genre> genres = new List<Genre>();
+            string[] genresArray = genreNames.
+                Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                .Select(g=>g.Trim())
+                .ToArray();
+
+            foreach (var name in genresArray)
+            {
+                if (!genres.Any(a => a.Name.ToLower() == name.ToLower()))
+                {
+                    Genre genre = genreService.GetGenreByName(name);
+                    if (genre == null)
+                    {
+                        genre = genreService.InsertGenre(name);
+                    }
+
+                    genres.Add(genre);
+                }
+            }
+
+            return genres;
+        }
+
+        private ICollection<Actor> GetActors(string actorNames)
+        {
+            IActorService actorService = ServiceLocator.Instance.GetService<IActorService>();
+
+            ICollection<Actor> actors = new List<Actor>();
+            string[] actorsArray = actorNames
+                .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                .Select(a => a.Trim())
+                .ToArray();
+
+            foreach (var name in actorsArray)
+            {
+                if (!actors.Any(a => a.Name.ToLower() == name.ToLower()))
+                {
+                    Actor actor = actorService.GetActorByName(name);
+                    if (actor == null)
+                    {
+                        actor = actorService.InsertActor(name);
+                    }
+
+                    actors.Add(actor);
+                }
+            }
+
+            return actors;
         }
 
         [Authorize]

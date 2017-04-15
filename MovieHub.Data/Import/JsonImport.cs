@@ -12,7 +12,7 @@
 
     public static class JsonImport
     {
-        private const string FilePath = @"D:\Github\MovieHub\MovieHub\Import\movies.json";
+        private const string FilePath = @"E:\Softuni\Entity Framework\Teamwork\MovieHub\MovieHub\Import\movies.json";
 
         public static ICollection<Movie> ImportMovies(MovieDbContext context)
         {
@@ -35,6 +35,7 @@
                 Production production =
                     ImportHelper.GetProductionByName(context, movieDTO.Production);
                 //string[] languages = movieDTO.Language.Split(new char[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                int runtime = int.Parse(movieDTO.Runtime.Split(' ').First());
 
                 Movie movie = new Movie()
                 {
@@ -48,7 +49,7 @@
                     Plot = movieDTO.Plot,
                     PosterUrl = movieDTO.Poster,
                     //Year = movieDTO.Year,
-                    Runtime = movieDTO.Runtime,
+                    Runtime = runtime,
                     Production = production,
                     Released = movieDTO.Released,
                     Rated = movieDTO.Rated

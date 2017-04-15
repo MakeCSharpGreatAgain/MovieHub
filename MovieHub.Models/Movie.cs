@@ -32,7 +32,7 @@ namespace MovieHub.Models
         [Column(TypeName = "date")]
         public DateTime? Released { get; set; }
 
-        public string Runtime { get; set; }
+        public int? Runtime { get; set; }
 
         public int? DirectorId { get; set; }
         public virtual Director Director { get; set; }

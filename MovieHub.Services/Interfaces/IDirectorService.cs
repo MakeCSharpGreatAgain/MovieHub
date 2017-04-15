@@ -7,5 +7,11 @@
     public interface IDirectorService
     {
         void InsertDirectors(ICollection<Director> directors);
+
+        Director InsertDirector(string name);
+
+        //bool IsDirectorExisting(string name);
+
+        Director GetDirectorByName(string name);
     }
 }

@@ -8,6 +8,7 @@ using MovieHub.Models.DTOs;
 using MovieHub.ViewModels.Account;
 using System.IO;
 using MovieHub.Data;
+using MovieHub.ViewModels.Movie;
 
 namespace MovieHub.Configurations
 {
@@ -21,7 +22,7 @@ namespace MovieHub.Configurations
 
                 action.CreateMap<RegisterViewModel, ApplicationUser>()
                     .ForMember(dest => dest.UserName, cfg => cfg.MapFrom(src => src.Username));
-               // .ForMember(dest => dest.ProfilePicture, cfg => cfg.MapFrom(src => ConvertToByteArray(src.ProfilePicture)));
+                // .ForMember(dest => dest.ProfilePicture, cfg => cfg.MapFrom(src => ConvertToByteArray(src.ProfilePicture)));
 
                 action.CreateMap<string, Actor>()
                 .ForMember<string>(dest => dest.Name, mo => mo.MapFrom(src => src));
@@ -31,6 +32,9 @@ namespace MovieHub.Configurations
 
                 action.CreateMap<string, Director>()
                .ForMember<string>(dest => dest.Name, mo => mo.MapFrom(src => src));
+
+                //action.CreateMap<MovieViewModel, MovieDTO>()
+                //.ForMember(dest => dest.Runtime, mo => mo.MapFrom(src => src.Runtime.ToString()));
 
                 //action.CreateMap<MovieDTO, Movie>()
                 //.ForMember(dest => dest.Genres, cfg => cfg.MapFrom(src => MovieDbContext.GetGenresByName(context, src.Genres)));

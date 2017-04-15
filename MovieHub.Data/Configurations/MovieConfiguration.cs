@@ -37,7 +37,7 @@
                 .IsRequired();
 
             //One-to-Many (Director-Movies)
-            this.HasRequired(m => m.Director)
+            this.HasOptional(m => m.Director)
                 .WithMany(d => d.DirectedMovies)
                 .HasForeignKey(m => m.DirectorId);
 

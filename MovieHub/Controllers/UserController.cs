@@ -41,7 +41,7 @@ namespace MovieHub.Controllers
                     using (var binary = new BinaryReader(poImgFile.InputStream))
                     {
                         imageData = binary.ReadBytes(poImgFile.ContentLength);
-                    }
+                    }  
                 }
 
                 var store = new UserStore<ApplicationUser>(new MovieDbContext());
