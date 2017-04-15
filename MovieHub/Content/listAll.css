@@ -1,0 +1,39 @@
+﻿img {
+    width: 90px;
+    height: 133px;
+}
+
+img:hover {
+    opacity: 0.8;
+    border-radius: 50%;
+}
+
+h4 {
+    font-size: 1.4em;
+}
+
+.imdb {
+    font-size: 1.1em;
+}
+
+.year {
+    font-size: 0.8em;
+    color: grey;
+}
+
+.rating {
+    padding: 5px;
+    font-size: 1.1em;
+    border: 1px solid red;
+    border-radius: 50%;
+}
+
+a:hover {
+    color:red;
+    text-decoration: none;
+}
+
+h1 {
+    color:cornflowerblue;
+    font-family: 'Bradley Hand ITC';
+}

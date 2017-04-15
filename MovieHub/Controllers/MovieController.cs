@@ -33,8 +33,14 @@ namespace MovieHub.Controllers
             return View(movieService.GetAllMovies());
         }
 
-        // Get: Movie/Details
+        // GET: Movie/Details
         public ActionResult Details()
+        {
+            return View();
+        }
+
+        // GET: Movie/Add
+        public ActionResult Add()
         {
             return View();
         }
