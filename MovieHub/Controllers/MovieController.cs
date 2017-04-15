@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MovieHub.Data;
@@ -34,9 +36,34 @@ namespace MovieHub.Controllers
         }
 
         // GET: Movie/Details
-        public ActionResult Details()
+        public ActionResult Details(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+
+            using (var db = new MovieDbContext())
+            {
+                //TODO : Include more things if needed 
+                var movie = db.Movies
+                    .Where(m=>m.Id == id)
+                    .Include(m=>m.Director)
+                    .Include(m=>m.Actors)
+                    .Include(m=>m.Production)
+                    .Include(m=>m.Genres)
+                    .First();
+
+
+                if (movie == null)
+                {
+                    return HttpNotFound();
+                }
+
+                return View(movie);
+            }
+
         }
 
         // GET: Movie/Add

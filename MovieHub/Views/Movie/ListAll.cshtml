@@ -16,7 +16,7 @@
             <a href="#"><img src="@movie.PosterUrl" /></a>
         </div>
         <div class="col-md-5">
-            <h4 class="title"><a href="#">@movie.Title </a><span class="year">(@movie.Year)</span></h4>
+            <h4 class="title">  @Html.ActionLink(@movie.Title,"Details","Movie", new {@id = movie.Id},null) <span class="year">(@movie.Year)</span></h4>
             <p class="imdb"> Our partner rating(IMDb): <span class="rating">@movie.ImdbRating</span></p>
         </div>
     </div>
