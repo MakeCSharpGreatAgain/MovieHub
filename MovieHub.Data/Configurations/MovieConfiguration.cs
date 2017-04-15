@@ -16,9 +16,9 @@
                 .IsRequired()
                 .HasMaxLength(100);
 
-            //Year:
-            this.Property(m => m.Year)
-                .IsRequired();
+            ////Year:
+            //this.Property(m => m.Year)
+            //    .IsRequired();
 
             //Rated:
             this.Property(m => m.Rated)

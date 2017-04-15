@@ -24,9 +24,10 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("All Movies", "ListAll", "Movie")</li>
-                    @if (Request.IsAuthenticated)
+
+                    @if (User.IsInRole("Administrator"))
                     {
-                        <li>@Html.ActionLink("Add Movie", "Add", "Movie") </li>
+                        <li>@Html.ActionLink("Add Movie", "Create", "Movie") </li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")

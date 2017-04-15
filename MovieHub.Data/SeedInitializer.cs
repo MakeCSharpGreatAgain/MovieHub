@@ -10,7 +10,7 @@
     using System.Data.Entity;
     using System.Linq;
 
-    public class SeedInitializer : DropCreateDatabaseAlways<MovieDbContext>
+    public class SeedInitializer : DropCreateDatabaseIfModelChanges<MovieDbContext>
     {
         //TODO : Replace that path depending on where movies.json is on your PC
         //private const string filePath = "../../../MovieHub/import/movies.json";
