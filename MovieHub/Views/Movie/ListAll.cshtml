@@ -8,12 +8,13 @@
 
 <h1></h1>
 <div class="container">
+    <h1 class="text-center">Our movies:</h1>
     <div class="row">
-        <div class="text-center">
+        <div>
             @using (Html.BeginForm("ListAll", "Movie", FormMethod.Get))
             {
-                <div class="col-lg-10">
-                    @Html.TextBox("search", null, new { @class = "form-control input-lg", @placeholder = "Search by Title" })
+                <div>
+                    @Html.TextBox("search", null, new { @class = "form-control input-lg col-md-offset-4 search", @placeholder = "Search by Title" })
                     <button type="submit" class="btn btn-default btn-md">
                         <span class="glyphicon glyphicon-search"></span> Search
                     </button>
@@ -23,7 +24,6 @@
             }
         </div>
     </div>
-    <h1 class="text-center">Our movies:</h1>
     @foreach (var movie in Model)
     {
         <div class="row">
