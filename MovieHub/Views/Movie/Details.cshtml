@@ -10,14 +10,14 @@
 
     <div class="row">
         <div class="col-md-12 text-center">
-            <h1> @Model.Title <span class="year">@Model.Released</span></h1>
+            <h1> @Model.Title <span class="year">(@Model.Released.Value.Year)</span></h1>
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-12 text-center text-capitalize">
             <span class="details">Rated: @Model.Rated | @Model.Runtime | @foreach (var genre in @Model.Genres)
-              {@genre.Name<text> </text>} | Realed Here</span>
+              {@genre.Name<text> </text>} | @Model.Released.Value.ToString("yyyy/MM/dd")</span>
         </div>
     </div>
 
@@ -38,7 +38,7 @@
                 <span class="bold">Stars: </span>
                 @foreach (var act in @Model.Actors)
                 {
-                    @act.Name<text> </text>
+                    @act.Name<text> | </text>
                 }
             </div>
             <div class="col-md-12 vcenter">
@@ -64,28 +64,30 @@
         </div>
     </div>
     
+    <br />
+
     <!-- Submit a review  -->
     @if (User.Identity.IsAuthenticated)
     {
         <div class="row">
-            <div class="col-sm-3">
-                <h2>Submit your review here:</h2>
+            <div class="col-md-4">
+                <h2 class="headerReview">Give us your review here:</h2>
             </div>
-            <div class="col-sm-7">
+            <div class="col-md-8">
                 @using (Ajax.BeginForm("SubmitReview", new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.InsertAfter, UpdateTargetId = "Reviews", OnFailure = "reviewPostFailure" }))
                 {
 
                     @Html.Hidden("MovieId", Model.Id)
-                    @Html.TextArea("Content", "")
+                    @Html.TextArea("Content", new { @class = "form-control textarea" })
                     @Html.AntiForgeryToken()
-                    <div class="col-sm-offset-5"><input type="submit" value="Submit" class="btn btn-default text-center" /></div>
+                    <div class="col-sm-offset-4"><input type="submit" value="Review" class="btn btn-default text-center" /></div>
                 }
             </div>
         </div>
     }
     <!-- All reviews -->
     <div class="row">
-        <div class="col-sm-3">
+        <div class="col-sm-4">
         </div>
         @foreach (var review in Model.Reviews)
         {

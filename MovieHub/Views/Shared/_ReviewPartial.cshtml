@@ -1,6 +1,8 @@
 ﻿@model MovieHub.Models.Review
-<div class="col-sm-offset-3 col-sm-7 allComments">
-    <div><strong><span >@Model.Author.FirstName</span> said: </strong></div>
+@Styles.Render("~/Content/movieDetails.css")
+
+<div class="col-sm-offset-4 col-sm-8 allComments">
+    <div><strong><span class="author">@Model.Author.FirstName</span> said: </strong></div>
     <p>
         @Model.Content
     </p>

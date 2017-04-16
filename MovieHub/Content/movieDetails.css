@@ -1,6 +1,4 @@
-﻿body {
-}
-.year {
+﻿.year {
     font-size:0.8em;
     color: grey;
 }
@@ -40,4 +38,22 @@ hr {
 
 button {
     margin-left: 10%
+}
+
+#Content {
+    max-width: 1000px;
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    height: 150px;
+}
+
+.author {
+    color: indigo;
+    font-size: 1.2em;
+    
+}
+
+.headerReview {
+    font-family: 'Bradley Hand ITC';
 }
