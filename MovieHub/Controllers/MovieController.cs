@@ -82,6 +82,11 @@ namespace MovieHub.Controllers
         [CustomAuthorize(Roles = "Administrator")]
         public ActionResult Create()
         {
+            //Check if we have error messages from our last attempt to create a movie
+            if (TempData["message"] != null)
+            {
+                ViewBag.Message = TempData["message"].ToString();
+            }
             return View();
         }
 
@@ -89,6 +94,14 @@ namespace MovieHub.Controllers
         [HttpPost]
         public ActionResult Create(MovieViewModel movieViewModel)
         {
+
+            if (!ModelState.IsValid)
+            {
+                //if the create process failed, this message will be displayed 
+                TempData["message"] = "Please make sure you aren't leaving any empty fields marked as required.";
+                return RedirectToAction("Create");
+            }
+
             //MovieDTO movieDTO = Mapper.Map<MovieViewModel, MovieDTO>(movieViewModel);
 
             IMovieService movieService = ServiceLocator.Instance.GetService<IMovieService>();
@@ -136,8 +149,10 @@ namespace MovieHub.Controllers
                 movie.Production = production;
             }
 
-            int id = movieService.AddMovie(movie);
+           
 
+            int id = movieService.AddMovie(movie);
+            TempData["message"] = null;
             return RedirectToAction("Details", new { @id = id });
         }
 

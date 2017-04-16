@@ -65,7 +65,7 @@
                     .Include(m => m.Director)
                     .Include(m => m.Production)
                     .Include(m => m.Actors)
-                    .Include(m => m.Reviews)
+                    .Include(m => m.Reviews.Select(r=>r.Author))
                     .FirstOrDefault(m => m.Id == id);
             }
         }
