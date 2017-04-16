@@ -2,14 +2,18 @@
 @{
     ViewBag.Title = "Register";
 }
+@Styles.Render("~/Content/register.css")
 
 <h2></h2>
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal col-md-offset-3", role = "form", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    <h4>Create MovieHub Account</h4>
+    <h1 class="title">Create MovieHub Account</h1>
     <hr />
+
+    
+
     @Html.ValidationSummary("", new { @class = "text-danger" })
 
     <div class="form-group">
