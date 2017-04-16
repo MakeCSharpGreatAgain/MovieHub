@@ -12,12 +12,13 @@ namespace MovieHub.Models
     {
         private ICollection<Genre> genres;
         private ICollection<Actor> actors;
+        private ICollection<Review> reviews;
 
         public Movie()
         {
             this.genres = new HashSet<Genre>();
             this.actors = new HashSet<Actor>();
-            this.Reviews = new HashSet<Review>();
+            this.reviews = new HashSet<Review>();
         }
 
         public int Id { get; set; }
@@ -76,6 +77,17 @@ namespace MovieHub.Models
             }
         }
 
-        public virtual ICollection<Review> Reviews { get; set; }
+        public virtual ICollection<Review> Reviews
+        {
+            get
+            {
+                return reviews;
+            }
+
+            set
+            {
+                reviews = value;
+            }
+        }
     }
 }

@@ -7,6 +7,7 @@
 
     public interface IMovieService
     {
+        ICollection<Movie> SearchMoviesByTitle(string Title);
         ICollection<Movie> GetAllMovies();
         Movie GetMovieById(int id);
         int AddMovie(Movie movieDTO);

@@ -20,17 +20,17 @@
             //this.Property(m => m.Year)
             //    .IsRequired();
 
-            //Rated:
-            this.Property(m => m.Rated)
-                .IsRequired();
+            ////Rated:
+            //this.Property(m => m.Rated)
+            //    .IsRequired();
 
-            //Runtime
-            this.Property(m => m.Runtime)
-                .IsRequired();
+            ////Runtime
+            //this.Property(m => m.Runtime)
+            //    .IsRequired();
 
-            //Plot:
-            this.Property(m => m.Plot)
-                .IsRequired();
+            ////Plot:
+            //this.Property(m => m.Plot)
+            //    .IsRequired();
 
             //ImdbRating:
             this.Property(m => m.ImdbRating)
@@ -65,6 +65,11 @@
                     cfg.MapRightKey("ActorId");
                     cfg.ToTable("MovieActors");
                 });
+
+            //One-to-Many (Movie-Reviews)
+            this.HasMany(m => m.Reviews)
+                .WithRequired(r => r.Movie)
+                .HasForeignKey(r => r.MovieId);
         }
     }
 }

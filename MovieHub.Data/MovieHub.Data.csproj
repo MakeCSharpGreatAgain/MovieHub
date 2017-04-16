@@ -69,6 +69,7 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configurations\ApplicationUserConfiguration.cs" />
     <Compile Include="Configurations\MovieConfiguration.cs" />
     <Compile Include="Import\JsonImport.cs" />
     <Compile Include="MovieDbContext.cs" />

@@ -4,12 +4,21 @@
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Security.Claims;
     using System.Threading.Tasks;
 
     public class ApplicationUser : IdentityUser
     {
+        private ICollection<Review> reviews;
+
+        public ApplicationUser()
+            : base()
+        {
+            this.reviews = new HashSet<Review>();
+        }
+
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
@@ -18,8 +27,21 @@
         public DateTime? Birthdate { get; set; }
 
         public GenderType Gender { get; set; }
-        
+
         public byte[] ProfilePicture { get; set; }
+
+        public virtual ICollection<Review> Reviews
+        {
+            get
+            {
+                return reviews;
+            }
+
+            set
+            {
+                reviews = value;
+            }
+        }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

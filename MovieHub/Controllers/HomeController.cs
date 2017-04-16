@@ -15,7 +15,7 @@ namespace MovieHub.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("ListAll", "Movie");
         }
 
 

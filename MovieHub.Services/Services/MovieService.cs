@@ -65,8 +65,18 @@
                     .Include(m => m.Director)
                     .Include(m => m.Production)
                     .Include(m => m.Actors)
-                    .Include(m => m.Reviews.Select(r=>r.Author))
+                    .Include(m => m.Reviews.Select(r => r.Author))
                     .FirstOrDefault(m => m.Id == id);
+            }
+        }
+
+        public ICollection<Movie> SearchMoviesByTitle(string title)
+        {
+            using (MovieDbContext context = new MovieDbContext())
+            {
+                return context.Movies
+                    .Where(m => m.Title.Contains(title) || title == null)
+                    .ToList();
             }
         }
     }
