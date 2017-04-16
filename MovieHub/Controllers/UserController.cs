@@ -10,6 +10,8 @@ using MovieHub.Data;
 using MovieHub.Models;
 using MovieHub.Services.Interfaces;
 using MovieHub.Services;
+using MovieHub.ViewModels.User;
+using AutoMapper;
 
 namespace MovieHub.Controllers
 {
@@ -24,7 +26,12 @@ namespace MovieHub.Controllers
         //GET : User/Profile
         public ActionResult ProfilePage()
         {
-            return View();
+            IApplicationUserService userService = ServiceLocator.Instance.GetService<IApplicationUserService>();
+
+            ApplicationUser user = userService.GetUserById(User.Identity.GetUserId());
+            UserProfilePageViewModel viewModel = Mapper.Map<UserProfilePageViewModel>(user);
+
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -41,7 +48,7 @@ namespace MovieHub.Controllers
                     using (var binary = new BinaryReader(poImgFile.InputStream))
                     {
                         imageData = binary.ReadBytes(poImgFile.ContentLength);
-                    }  
+                    }
                 }
 
                 var store = new UserStore<ApplicationUser>(new MovieDbContext());

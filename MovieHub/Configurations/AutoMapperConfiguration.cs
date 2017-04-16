@@ -9,6 +9,7 @@ using MovieHub.ViewModels.Account;
 using System.IO;
 using MovieHub.Data;
 using MovieHub.ViewModels.Movie;
+using MovieHub.ViewModels.User;
 
 namespace MovieHub.Configurations
 {
@@ -33,6 +34,8 @@ namespace MovieHub.Configurations
                 action.CreateMap<string, Director>()
                .ForMember<string>(dest => dest.Name, mo => mo.MapFrom(src => src));
 
+
+                action.CreateMap<ApplicationUser, UserProfilePageViewModel>();
                 //action.CreateMap<MovieViewModel, MovieDTO>()
                 //.ForMember(dest => dest.Runtime, mo => mo.MapFrom(src => src.Runtime.ToString()));
 

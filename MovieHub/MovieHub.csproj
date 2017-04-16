@@ -212,6 +212,7 @@
     <Compile Include="ViewModels\Manage\VerifyPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\Movie\MovieViewModel.cs" />
     <Compile Include="ViewModels\Movie\ReviewViewModel.cs" />
+    <Compile Include="ViewModels\User\UserProfilePageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\addMovie.css" />

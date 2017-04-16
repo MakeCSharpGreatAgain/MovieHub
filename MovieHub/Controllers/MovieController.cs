@@ -247,7 +247,7 @@
                     {
                         AuthorId = userId,
                         Content = reviewModel.Content,
-                        MovieId = reviewModel.MovieId
+                        MovieId = reviewModel.MovieId                        
                     });
 
                     db.SaveChanges();
