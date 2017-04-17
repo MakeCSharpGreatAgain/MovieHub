@@ -63,6 +63,7 @@
     <Compile Include="Interfaces\IGenreService.cs" />
     <Compile Include="Interfaces\IMovieService.cs" />
     <Compile Include="Interfaces\IProductionService.cs" />
+    <Compile Include="Interfaces\IReviewService.cs" />
     <Compile Include="Interfaces\IServiceLocator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceLocator.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Services\GenreService.cs" />
     <Compile Include="Services\MovieService.cs" />
     <Compile Include="Services\ProductionService.cs" />
+    <Compile Include="Services\ReviewService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MovieHub.Data\MovieHub.Data.csproj">

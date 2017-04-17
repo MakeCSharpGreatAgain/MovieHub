@@ -26,6 +26,7 @@
             services.Add(typeof(IDirectorService), new DirectorService());
             services.Add(typeof(IGenreService), new GenreService());
             services.Add(typeof(IProductionService), new ProductionService());
+            services.Add(typeof(IReviewService), new ReviewService());
         }
 
         public static ServiceLocator Instance
