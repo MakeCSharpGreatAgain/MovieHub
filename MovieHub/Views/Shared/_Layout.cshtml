@@ -22,12 +22,19 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("All Movies", "ListAll", "Movie")</li>
+                    @*<li>@Html.ActionLink("Home", "Index", "Home")</li>*@
+                    @*<li>@Html.ActionLink("All Movies", "ListAll", "Movie")</li>*@
 
                     @if (User.IsInRole("Administrator"))
                     {
                         <li>@Html.ActionLink("Add Movie", "Create", "Movie") </li>
+
+                        @*
+                        <a href="@Url.Action("Create", "Movie")">
+                            <span class="glyphicon glyphicon-plus-sign"></span>
+                        </a>
+                        *@
+
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")
