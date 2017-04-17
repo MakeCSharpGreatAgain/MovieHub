@@ -6,11 +6,16 @@
     <p>
         @Model.Content
     </p>
-    
+
     @if (Model.isAuthor(User.Identity.Name) || User.IsInRole("Administrator"))
     {
-        @Html.ActionLink("Edit", "Edit", "Review", new {@id = Model.Id}, new { @class = "btn btn-primary reviewButton" })
-        <button type="button" class="btn btn-danger reviewButton">Delete</button>
+        @Html.ActionLink("Edit", "Edit", "Review", new { @id = Model.Id }, new { @class = "btn btn-primary reviewButton" })
+        @*<button type="button" class="btn btn-danger reviewButton">Delete</button>*@
+        <div class="forum-post-panel btn-group btn-group-xs">
+
+            @Html.ActionLink("Delete", "Delete", "Review", new { @id = Model.Id, @movieId = Model.MovieId }, new { @class = "btn btn-danger" })
+
+        </div>
 
     }
 

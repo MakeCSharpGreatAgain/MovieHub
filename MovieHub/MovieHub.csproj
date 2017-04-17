@@ -213,6 +213,7 @@
     <Compile Include="ViewModels\Manage\VerifyPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\Movie\MovieViewModel.cs" />
     <Compile Include="ViewModels\Movie\ReviewViewModel.cs" />
+    <Compile Include="ViewModels\Review\DeleteReviewViewModel.cs" />
     <Compile Include="ViewModels\User\UserProfilePageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -304,6 +305,7 @@
     <Content Include="Views\Movie\Create.cshtml" />
     <Content Include="Views\Shared\_ReviewPartial.cshtml" />
     <Content Include="Views\Review\Edit.cshtml" />
+    <Content Include="Views\Review\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

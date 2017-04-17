@@ -10,5 +10,7 @@ namespace MovieHub.Services.Interfaces
     public interface IReviewService
     {
         Review FetchReviewById(int? id);
+
+        bool DeleteReviewById(int id);
     }
 }
