@@ -12,6 +12,7 @@ namespace MovieHub.Models
         public int Id { get; set; }
 
         [Required]
+        [DataType(DataType.MultilineText)]
         public string Content  { get; set; }
 
         public virtual Movie Movie { get; set; }

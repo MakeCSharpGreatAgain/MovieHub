@@ -10,17 +10,16 @@
 
 @using (Html.BeginForm())
 {
-    <fieldset class="form-horizontal">
-        <legend>Comment</legend>
-        <div class="control-group">
-            @Html.LabelFor(model => model.Content, new { @class = "control-label" })
-            <div class="controls">
-                @Html.EditorFor(model => model.Content)
-                @Html.ValidationMessageFor(model => model.Content, null, new { @class = "help-inline" })
-            </div>
+    <div class="row">
+        @*@Html.LabelFor(model => model.Content, new { @class = "control-label" })*@
+        <div class="controls">
+            @Html.TextAreaFor(model => model.Content, new { @class = "form-control col-md-10 col-md-offset-1", @rows = 10 })
+            @Html.ValidationMessageFor(model => model.Content, null, new { @class = "help-inline" })
         </div>
-        <div class="form-actions no-color">
-            <input type="submit" value="Save" class="btn btn-success" />
+    </div>
+    <div class="row">
+        <div class="form-actions no-color col-md-12">
+            <input type="submit" value="Save" class="btn btn-primary col-md-offset-6 submitButton" />
         </div>
-    </fieldset>
+    </div>
 }

@@ -5,9 +5,12 @@
 textarea {
     max-width: 1000px;
     width: 100%;
+    margin-left: 1px;
 }
 
-button {
+.submitButton {
+    display: block;
     margin: 3px;
     margin-top: 6px;
+    margin-left: 45%;
 }
