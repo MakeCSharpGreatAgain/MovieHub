@@ -1,4 +1,4 @@
-﻿@model ICollection<MovieHub.Models.Movie>
+﻿@model ICollection<MovieHub.ViewModels.Movie.ListAllViewModel>
 
 @{
     ViewBag.Title = "ListAll";
@@ -28,15 +28,13 @@
     {
         <div class="row">
             <div class="col-md-offset-1 col-md-1">
-                @*<img src="https://images-na.ssl-images-amazon.com/images/M/MV5BZTRmNjQ1ZDYtNDgzMy00OGE0LWE4N2YtNTkzNWQ5ZDhlNGJmL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@("@._V1_SX300.jpg")">*@
-
                 <a href="@Url.Action("Details", "Movie", new { @id = movie.Id })" title="List View" class="links">
                     <img src="@movie.PosterUrl" />
                 </a>
             </div>
             <div class="col-md-5">
-                <h4 class="title">  @Html.ActionLink(@movie.Title, "Details", "Movie", new { @id = movie.Id }, null) <span class="year">(@movie.Released.Value.Year)</span></h4>
-                <p class="imdb"> Our partner rating(IMDb): <span class="rating">@movie.ImdbRating</span></p>
+                <h4 class="title">  @Html.ActionLink((movie.Title != null ? movie.Title : "Unknown"), "Details", "Movie", new { @id = movie.Id }, null) <span class="year">(@(movie.ReleasedYear != null ? movie.ReleasedYear.ToString() : "Unknown"))</span></h4>
+                <p class="imdb"> Our partner rating(IMDb): <span class="rating">@(movie.ImdbRating != null ? movie.ImdbRating.ToString() : "Unknown")</span></p>
             </div>
         </div>
         <br />

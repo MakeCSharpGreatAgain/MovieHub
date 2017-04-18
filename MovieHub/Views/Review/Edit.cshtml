@@ -1,25 +1,24 @@
-﻿@model MovieHub.Models.Review
-@{
-    ViewBag.Title = "Edit";
-}
+﻿@model MovieHub.ViewModels.Review.EditViewModel
+    @{
+        ViewBag.Title = "Edit";
+    }
 
-@Styles.Render("~/Content/editReview.css")
+    @Styles.Render("~/Content/editReview.css")
 
 
-<h1 class="title text-center">Edit your review</h1>
+    <h1 class="title text-center">Edit your review</h1>
 
-@using (Html.BeginForm())
-{
-    <div class="row">
-        @*@Html.LabelFor(model => model.Content, new { @class = "control-label" })*@
-        <div class="controls">
-            @Html.TextAreaFor(model => model.Content, new { @class = "form-control col-md-10 col-md-offset-1", @rows = 10 })
-            @Html.ValidationMessageFor(model => model.Content, null, new { @class = "help-inline" })
+    @using (Html.BeginForm(new { @MovieId = Model.MovieId }))
+    {
+        <div class="row">
+            <div class="controls">
+                @Html.TextAreaFor(model => model.Content, new { @class = "form-control col-md-10 col-md-offset-1", @rows = 10 })
+                @Html.ValidationMessageFor(model => model.Content, null, new { @class = "help-inline" })
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="form-actions no-color col-md-12">
-            <input type="submit" value="Save" class="btn btn-primary col-md-offset-6 submitButton" />
+        <div class="row">
+            <div class="form-actions no-color col-md-12">
+                <input type="submit" value="Save" class="btn btn-primary col-md-offset-6 submitButton" />
+            </div>
         </div>
-    </div>
-}
+    }

@@ -12,5 +12,9 @@ namespace MovieHub.Services.Interfaces
         Review FetchReviewById(int? id);
 
         bool DeleteReviewById(int id);
+
+        void AddReview(Review review);
+
+        void UpdateReview(int reviewId, string newContent);
     }
 }

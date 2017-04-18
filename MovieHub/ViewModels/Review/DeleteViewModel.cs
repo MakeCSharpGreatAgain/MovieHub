@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class DeleteReviewViewModel
+    public class DeleteViewModel
     {
         public int ReviewId { get; set; }
 

@@ -4,7 +4,7 @@
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
-    public class MovieViewModel
+    public class CreateViewModel
     {
         [DisplayName("* Title")]
         [Required]

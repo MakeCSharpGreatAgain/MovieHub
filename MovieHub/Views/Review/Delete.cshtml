@@ -1,4 +1,4 @@
-﻿@model MovieHub.ViewModels.Review.DeleteReviewViewModel
+﻿@model MovieHub.ViewModels.Review.DeleteViewModel
 
 @{
     ViewBag.Title = "Delete";
@@ -12,17 +12,18 @@
         <h2>@ViewBag.Title</h2>
         @using (Html.BeginForm("Delete", "Review", FormMethod.Post, new { @class = "form-horizontal" }))
             {
+            @Html.HiddenFor(model => model.MovieId)
             @Html.HiddenFor(model => model.ReviewId)
             <div class="form-group">
                 @Html.LabelFor(model => model.Content, new { @class = "control-label col-sm-4" })
                 <div class="col-sm-4">
-                    @Html.TextBoxFor(model => model.Content, new { @class = "form-control", @readonly = "readonly" })
+                    @Html.TextAreaFor(model => model.Content, 10, 15, new { @class = "form-control", @readonly = "readonly" })
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-sm-4 col-sm-offset-4">
-                    @Html.ActionLink("Cancel", "Details", new { controller = "Movie", @id = Model.MovieId }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Cancel", "Details", new { controller = "Movie", @modelId = Model.MovieId }, new { @class = "btn btn-primary" })
                     <input type="submit" value="Delete" class="btn btn-success" />
                 </div>
             </div>

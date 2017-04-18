@@ -30,14 +30,14 @@ namespace MovieHub.Controllers
             IReviewService reviewService = ServiceLocator.Instance.GetService<IReviewService>();
             Review review = reviewService.FetchReviewById(id);
 
-            DeleteReviewViewModel viewModel = Mapper.Map<DeleteReviewViewModel>(review);
+            DeleteViewModel viewModel = Mapper.Map<DeleteViewModel>(review);
 
             return View(viewModel);
         }
 
         //POST: Review/Delete
         [HttpPost]
-        public ActionResult Delete(DeleteReviewViewModel viewModel)
+        public ActionResult Delete(DeleteViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
@@ -52,7 +52,7 @@ namespace MovieHub.Controllers
 
             return RedirectToAction("Details", "Movie", new
             {
-                @id = viewModel.ReviewId
+                @id = viewModel.MovieId
             });
         }
 
@@ -73,30 +73,29 @@ namespace MovieHub.Controllers
             IReviewService reviewService = ServiceLocator.Instance.GetService<IReviewService>();
             var review = reviewService.FetchReviewById(id);
 
-            return View(review);
+            if (review == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            EditViewModel viewModel = Mapper.Map<EditViewModel>(review);
+            return View(viewModel);
         }
 
         [Authorize]
         [HttpPost]
-        public ActionResult Edit(ReviewViewModel reviewModel)
+        public ActionResult Edit(EditViewModel viewModel)
         {
-            if (ModelState.IsValid && reviewModel != null)
+            if (ModelState.IsValid && viewModel != null)
             {
+                IReviewService reviewService = ServiceLocator.Instance.GetService<IReviewService>();
 
-                using (var db = new MovieDbContext())
-                {
-                    var review = db.Reviews.FirstOrDefault(r => r.Id == reviewModel.Id);
+                reviewService.UpdateReview(viewModel.Id, viewModel.Content);
 
-                    review.Content = reviewModel.Content;
-                    db.Entry(review).State = EntityState.Modified;
-                    db.SaveChanges();
-
-                    return RedirectToAction("Details", "Movie", new { id = review.MovieId });
-                }
+                return RedirectToAction("Details", "Movie", new { id = viewModel.MovieId });
             }
 
             return View();
         }
-
     }
 }

@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using MovieHub.Data;
-using MovieHub.Models;
-
-namespace MovieHub.Controllers
+﻿namespace MovieHub.Controllers
 {
+    using System.IO;
+    using System.Web.Mvc;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using Data;
+    using Models;
+
     public class HomeController : Controller
     {
         public ActionResult Index()
@@ -18,10 +14,8 @@ namespace MovieHub.Controllers
             return RedirectToAction("ListAll", "Movie");
         }
 
-
         public FileContentResult DisplayProfilePicture()
         {
-
             if (User.Identity.IsAuthenticated)
             {
                 var store = new UserStore<ApplicationUser>(new MovieDbContext());
@@ -29,10 +23,6 @@ namespace MovieHub.Controllers
                 var userManager = new UserManager<ApplicationUser>(store);
                 ApplicationUser user = userManager.FindByNameAsync(User.Identity.Name).Result;
 
-                //var db = new MovieDbContext();
-                //var u = db.Users.Find(user.Id);
-
-                //var userImage = u.ProfilePicture;
                 var userImage = user.ProfilePicture;
 
                 if (userImage == null)
@@ -47,7 +37,6 @@ namespace MovieHub.Controllers
 
             // Create a new default profile picture if the user is not logged in.
             return CreateDefaultProfilePic();
-
         }
 
         public FileContentResult CreateDefaultProfilePic()
@@ -63,6 +52,5 @@ namespace MovieHub.Controllers
 
             return File(imageData, "image/png");
         }
-
     }
 }

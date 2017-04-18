@@ -12,7 +12,6 @@
 
         static ServiceLocator()
         {
-
         }
 
         private ServiceLocator()
@@ -42,13 +41,10 @@
             try
             {
                 return (T)services[typeof(T)];
-
             }
             catch (KeyNotFoundException)
             {
-
                 throw new NotImplementedException("The requested service is not registered!");
-
             }
         }
     }

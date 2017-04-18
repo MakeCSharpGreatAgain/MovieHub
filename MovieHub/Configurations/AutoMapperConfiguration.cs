@@ -11,6 +11,7 @@ using MovieHub.Data;
 using MovieHub.ViewModels.Movie;
 using MovieHub.ViewModels.User;
 using MovieHub.ViewModels.Review;
+using Microsoft.AspNet.Identity;
 
 namespace MovieHub.Configurations
 {
@@ -24,7 +25,6 @@ namespace MovieHub.Configurations
 
                 action.CreateMap<RegisterViewModel, ApplicationUser>()
                     .ForMember(dest => dest.UserName, cfg => cfg.MapFrom(src => src.Username));
-                // .ForMember(dest => dest.ProfilePicture, cfg => cfg.MapFrom(src => ConvertToByteArray(src.ProfilePicture)));
 
                 action.CreateMap<string, Actor>()
                 .ForMember<string>(dest => dest.Name, mo => mo.MapFrom(src => src));
@@ -38,14 +38,17 @@ namespace MovieHub.Configurations
 
                 action.CreateMap<ApplicationUser, UserProfilePageViewModel>();
 
-                action.CreateMap<Review, DeleteReviewViewModel>()
+                action.CreateMap<Review, DeleteViewModel>()
                 .ForMember(dest => dest.ReviewId, mo => mo.MapFrom(src => src.Id))
                 .ForMember(dest => dest.MovieId, mo => mo.MapFrom(src => src.MovieId));
-                //action.CreateMap<MovieViewModel, MovieDTO>()
-                //.ForMember(dest => dest.Runtime, mo => mo.MapFrom(src => src.Runtime.ToString()));
 
-                //action.CreateMap<MovieDTO, Movie>()
-                //.ForMember(dest => dest.Genres, cfg => cfg.MapFrom(src => MovieDbContext.GetGenresByName(context, src.Genres)));
+                action.CreateMap<Movie, ListAllViewModel>()
+                .ForMember<int?>(dest => dest.ReleasedYear, mo => mo.MapFrom(src => src.Released != null ? (int?)src.Released.Value.Year : null));
+
+                action.CreateMap<Review, DeleteViewModel>()
+                .ForMember(dest => dest.ReviewId, mo => mo.MapFrom(src => src.Id));
+
+                action.CreateMap<Review, EditViewModel>();
             });
         }
 

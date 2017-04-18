@@ -211,9 +211,11 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Manage\SetPasswordViewModel.cs" />
     <Compile Include="ViewModels\Manage\VerifyPhoneNumberViewModel.cs" />
-    <Compile Include="ViewModels\Movie\MovieViewModel.cs" />
+    <Compile Include="ViewModels\Movie\ListAllViewModel.cs" />
+    <Compile Include="ViewModels\Movie\CreateViewModel.cs" />
     <Compile Include="ViewModels\Movie\ReviewViewModel.cs" />
-    <Compile Include="ViewModels\Review\DeleteReviewViewModel.cs" />
+    <Compile Include="ViewModels\Review\DeleteViewModel.cs" />
+    <Compile Include="ViewModels\Review\EditViewModel.cs" />
     <Compile Include="ViewModels\User\UserProfilePageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

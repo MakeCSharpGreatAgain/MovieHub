@@ -10,7 +10,7 @@
 
     public static class Utils
     {
-        public static Production GetProduction(MovieViewModel movieViewModel)
+        public static Production GetProduction(CreateViewModel movieViewModel)
         {
             IProductionService productionService = ServiceLocator.Instance.GetService<IProductionService>();
 
@@ -24,7 +24,7 @@
             return production;
         }
 
-        public static Director GetDirector(MovieViewModel movieViewModel)
+        public static Director GetDirector(CreateViewModel movieViewModel)
         {
             IDirectorService directorService = ServiceLocator.Instance.GetService<IDirectorService>();
 

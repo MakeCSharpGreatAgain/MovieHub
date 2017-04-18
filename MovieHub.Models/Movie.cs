@@ -46,6 +46,7 @@ namespace MovieHub.Models
 
         public string PosterUrl { get; set; } // This will be a link. Still no idea how to implement this!?
 
+        [Range(0, 10)]
         public double? ImdbRating { get; set; }
 
         public int? ProductionId { get; set; }

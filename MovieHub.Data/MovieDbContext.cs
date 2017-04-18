@@ -9,7 +9,7 @@ namespace MovieHub.Data
     public class MovieDbContext : IdentityDbContext<ApplicationUser>
     {
         public MovieDbContext()
-            : base("MovieHubContext", throwIfV1Schema: false)
+            : base("MovieHubContext")
         {
             Database.SetInitializer<MovieDbContext>(new SeedInitializer());
         }

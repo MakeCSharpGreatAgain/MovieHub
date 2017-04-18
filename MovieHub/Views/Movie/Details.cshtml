@@ -10,14 +10,16 @@
 
     <div class="row">
         <div class="col-md-12 text-center">
-            <h1> <span class="movieTitle">@Model.Title</span> <span class="year">(@Model.Released.Value.Year)</span></h1>
+            <h1> <span class="movieTitle">@(Model.Title != null ? Model.Title : null)</span> <span class="year">(@(Model.Released != null ? Model.Released.Value.Year.ToString() : "Unknown"))</span></h1>
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-12 text-center text-capitalize">
-            <span class="details">Rated: @Model.Rated | @Model.Runtime | @foreach (var genre in @Model.Genres)
-              {@genre.Name<text> </text>} | @Model.Released.Value.ToString("yyyy/MM/dd")</span>
+            <span class="details">
+                Rated: @(Model.Rated != null ? Model.Rated : "Unknown") | @(Model.Runtime != null ? Model.Runtime.ToString() : "Unknown") | @foreach (var genre in @Model.Genres)
+                {@genre.Name<text> </text>} | @(Model.Released != null ? Model.Released.Value.ToString("yyyy/MM/dd") : "Unknown")
+            </span>
         </div>
     </div>
 
@@ -32,7 +34,7 @@
 
         <div class="col-md-8 verticalAlign">
             <div class="col-md-12 vcenter">
-                <span class="bold">Director: </span> @Model.Director.Name 
+                <span class="bold">Director: </span> @(Model.Director != null ? Model.Director.Name : "Unknown")
             </div>
             <div class="col-md-12 vcenter">
                 <span class="bold">Stars: </span>
@@ -42,20 +44,20 @@
                 }
             </div>
             <div class="col-md-12 vcenter">
-                <span class="bold">Language(s): </span>@Model.Languages
+                <span class="bold">Language(s): </span>@(Model.Languages != null ? Model.Languages : "Unknown")
             </div>
             <div class="col-md-12 vcenter">
-                <span class="bold">Production: </span>@Model.Production.Name
+                <span class="bold">Production: </span>@(Model.Production != null ? Model.Production.Name : "Unknown")
             </div>
             <div class="col-md-12 vcenter">
-                <span class="bold">Awards: </span>@Model.Awards
+                <span class="bold">Awards: </span>@(Model.Awards != null ? Model.Awards : "Unknown")
             </div>
             <div class="col-md-12 vcenter">
-                <span class="bold">Plot: </span>@Model.Plot
+                <span class="bold">Plot: </span>@(Model.Plot != null ? Model.Plot : "Unknown")
             </div>
             <div class="col-md-12 vcenter">
                 <span class="bold">Our partner IMDb rating:</span>
-                <div class="col-md-12"><span class="rating">@Model.ImdbRating</span> | 123,333 votes</div>
+                <span class="rating">@(Model.ImdbRating != null ? Model.ImdbRating.ToString() : "Unknown")</span>
             </div>
 
             <button type="button" class="btn btn-primary">Add to favourite</button>
@@ -63,7 +65,7 @@
 
         </div>
     </div>
-    
+
     <br />
 
     <!-- Submit a review  -->
@@ -94,5 +96,4 @@
             @Html.Partial("_ReviewPartial", review)
         }
     </div>
-
 </div>
