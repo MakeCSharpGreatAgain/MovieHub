@@ -1,4 +1,4 @@
-﻿@model MovieHub.ViewModels.Review.DeleteViewModel
+@model MovieHub.ViewModels.Review.DeleteViewModel
 
 @{
     ViewBag.Title = "Delete";
@@ -23,7 +23,7 @@
 
             <div class="form-group">
                 <div class="col-sm-4 col-sm-offset-4">
-                    @Html.ActionLink("Cancel", "Details", new { controller = "Movie", @modelId = Model.MovieId }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Cancel", "Details", new { controller = "Movie", @id = Model.MovieId }, new { @class = "btn btn-primary" })
                     <input type="submit" value="Delete" class="btn btn-success" />
                 </div>
             </div>

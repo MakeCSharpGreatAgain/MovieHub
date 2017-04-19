@@ -1,4 +1,4 @@
-﻿@model ICollection<MovieHub.ViewModels.Movie.ListAllViewModel>
+@model ICollection<MovieHub.ViewModels.Movie.ListAllViewModel>
 
 @{
     ViewBag.Title = "ListAll";
@@ -24,6 +24,14 @@
             }
         </div>
     </div>
+  
+    <div class="row">
+        @Html.ActionLink("Title", "ListAll", new { sortOrder = ViewBag.TitleSortParm })
+        @Html.ActionLink("New", "ListAll", new { sortOrder = ViewBag.NewReleasesSortParam })
+        @Html.ActionLink("Best Rated", "ListAll", new { sortOrder = ViewBag.BestRatedSortParam })
+
+    </div>
+
     @foreach (var movie in Model)
     {
         <div class="row">

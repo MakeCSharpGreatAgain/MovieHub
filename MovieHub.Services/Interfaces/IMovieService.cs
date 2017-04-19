@@ -1,4 +1,4 @@
-﻿namespace MovieHub.Services.Interfaces
+namespace MovieHub.Services.Interfaces
 {
     using Models;
     using Models.DTOs;
@@ -11,5 +11,7 @@
         ICollection<Movie> GetAllMovies();
         Movie GetMovieById(int id);
         int AddMovie(Movie movieDTO);
+
+        ICollection<Movie> SortMovies(string sortOrder, ICollection<Movie> movies);
     }
 }

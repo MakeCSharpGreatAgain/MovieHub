@@ -1,4 +1,4 @@
-﻿namespace MovieHub.Controllers
+namespace MovieHub.Controllers
 {
     using System;
     using System.Collections.Generic;
@@ -24,10 +24,18 @@
         }
 
         //GET: Movie/ListAll
-        public ActionResult ListAll(string search)
+        public ActionResult ListAll(string sortOrder,string search)
         {
+            //sorting params
+            ViewBag.TitleSortParm = "name_order";
+            ViewBag.NewReleasesSortParam = "new_releases";
+            ViewBag.BestRatedSortParam = "best_rated";
+
             IMovieService movieService = ServiceLocator.Instance.GetService<IMovieService>();
             ICollection<Movie> movies = movieService.SearchMoviesByTitle(search);
+
+            movies = movieService.SortMovies(sortOrder,movies);
+
             ICollection<ListAllViewModel> viewModels = Mapper.Map<ICollection<ListAllViewModel>>(movies);
 
             return View(viewModels);

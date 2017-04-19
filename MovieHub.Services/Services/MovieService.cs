@@ -1,4 +1,4 @@
-﻿namespace MovieHub.Services.Services
+namespace MovieHub.Services.Services
 {
     using Interfaces;
     using System;
@@ -78,6 +78,28 @@
                     .Where(m => m.Title.Contains(title) || title == null)
                     .ToList();
             }
+        }
+
+        public ICollection<Movie> SortMovies(string sortOrder, ICollection<Movie> movies)
+        {
+            switch (sortOrder)
+            {
+                case "name_order":
+                    movies = movies.OrderBy(m => m.Title).ToList();
+                    break;
+                case "new_releases":
+                    movies = movies.OrderByDescending(m => m.Released.Value.Year).ToList();
+                    break;
+                case "best_rated":
+                    movies = movies.OrderByDescending(m => m.ImdbRating).ToList();
+                    break;
+                    
+
+                default:
+                    break;
+            }
+
+            return movies;
         }
     }
 }

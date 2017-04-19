@@ -1,4 +1,4 @@
-﻿namespace MovieHub.Data.Import
+namespace MovieHub.Data.Import
 {
     using AutoMapper;
     using Models;
@@ -12,7 +12,7 @@
 
     public static class JsonImport
     {
-        private const string FilePath = @"E:\Softuni\Entity Framework\Teamwork\MovieHub\MovieHub\Import\movies.json";
+        private const string FilePath = @"D:\Github\MovieHub\MovieHub\Import\movies.json";
 
         public static ICollection<Movie> ImportMovies(MovieDbContext context)
         {
