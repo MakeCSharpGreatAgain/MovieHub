@@ -26,11 +26,14 @@
     </div>
   
     <div class="row">
-        @Html.ActionLink("Title", "ListAll", new { sortOrder = ViewBag.TitleSortParm })
-        @Html.ActionLink("New", "ListAll", new { sortOrder = ViewBag.NewReleasesSortParam })
-        @Html.ActionLink("Best Rated", "ListAll", new { sortOrder = ViewBag.BestRatedSortParam })
-
+        <div class="col-md-12 text-center order-links">
+            @Html.ActionLink("Title", "ListAll", new { sortOrder = ViewBag.TitleSortParm }) |
+            @Html.ActionLink("New", "ListAll", new { sortOrder = ViewBag.NewReleasesSortParam }) |
+            @Html.ActionLink("Best Rated", "ListAll", new { sortOrder = ViewBag.BestRatedSortParam })
+        </div>
     </div>
+
+    <hr />
 
     @foreach (var movie in Model)
     {

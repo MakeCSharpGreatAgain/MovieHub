@@ -1,0 +1,10 @@
+﻿.title {
+    font-family: 'Bradley Hand ITC';
+}
+
+textarea {
+    max-width: 1000px;
+    width: 100%;
+    margin-left: 1px;
+}
+

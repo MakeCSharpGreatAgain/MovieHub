@@ -40,3 +40,11 @@ h1 {
 #search {
     display: inline-block;
 }
+
+.order-links {
+    font-size: 1.4em;
+}
+
+hr {
+    width: 50%
+}

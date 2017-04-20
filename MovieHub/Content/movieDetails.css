@@ -69,3 +69,7 @@ button {
     font-size: 12px;
     width: 55px;
 }
+
+.back-button {
+    margin-left: 20px;
+}
